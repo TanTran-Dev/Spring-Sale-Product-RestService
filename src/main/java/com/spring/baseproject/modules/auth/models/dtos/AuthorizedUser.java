@@ -18,6 +18,11 @@ public class AuthorizedUser {
         this.clientID = (String) map.get("client_id");
     }
 
+    public AuthorizedUser(CustomUserDetail customUserDetail) {
+        this.userID = customUserDetail.getUserID();
+        this.username = customUserDetail.getUsername();
+    }
+
     public String getUserID() {
         return userID;
     }

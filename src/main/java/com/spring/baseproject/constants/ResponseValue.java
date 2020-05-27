@@ -30,6 +30,11 @@ public enum ResponseValue {
     BUILDING_NOT_FOUND(HttpStatus.NOT_FOUND, 4046, "không tìm thấy toà nhà"),
     ROOM_NOT_FOUND(HttpStatus.NOT_FOUND, 4047, "không tìm thấy phòng"),
     ROOM_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, 4048, "không tìm thấy loại phòng"),
+    TRADEMARK_NOT_FOUND(HttpStatus.NOT_FOUND, 4049, "không tìm thấy thương hiệu"),
+    PROMOTION_TYPE_NOT_FOUND(HttpStatus.NOT_FOUND, 4040, "không tìm thấy loại khuyễn mãi"),
+    ADMIN_NOT_FOUND(HttpStatus.NOT_FOUND, 40401, "không tìm thấy admin"),
+    CUSTOMER_NOT_FOUND(HttpStatus.NOT_FOUND, 40402, "không tìm thấy customer"),
+    PROMOTION_PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND, 40403, "không tìm thấy customer"),
 
     //409x Conflict
     USERNAME_EXISTS(HttpStatus.CONFLICT, 4091, "tên đăng nhập đã tồn tại"),
