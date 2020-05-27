@@ -4,7 +4,6 @@ import com.spring.baseproject.modules.demo_building.models.dtos.NewBuildingDto;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "building")
 public class Building {

@@ -1,7 +1,6 @@
 package com.spring.baseproject.configs.auth;
 
 import com.spring.baseproject.annotations.auth.AuthorizationRequired;
-import com.spring.baseproject.annotations.rbac.RoleBaseAccessControl;
 import com.spring.baseproject.base.models.BaseResponseBody;
 import com.spring.baseproject.components.rbac.InMemoryRoutesDictionary;
 import com.spring.baseproject.constants.ApplicationConstants;
@@ -101,7 +100,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         List<String> moduleNames = PackageScannerUtils.listAllSubPackages(rootModulePackage);
         Set<Class<? extends Annotation>> excludeAnnotations = new HashSet<>();
         excludeAnnotations.add(AuthorizationRequired.class);
-        excludeAnnotations.add(RoleBaseAccessControl.class);
         for (String moduleName : moduleNames) {
             int apiFound = 0;
             RouteScannerUtils.scanRoutes(rootModulePackage + "." + moduleName + ".controllers",

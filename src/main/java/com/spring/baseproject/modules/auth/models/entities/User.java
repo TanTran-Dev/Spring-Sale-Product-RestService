@@ -22,10 +22,6 @@ public class User {
     @Column(name = "last_active")
     private Date lastActive;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "role_id")
-    private Role role;
-
     public String getId() {
         return id;
     }
@@ -66,11 +62,12 @@ public class User {
         this.lastActive = lastActive;
     }
 
-    public Role getRole() {
-        return role;
+    public boolean isBanned() {
+        return isBanned;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setBanned(boolean banned) {
+        isBanned = banned;
     }
+
 }

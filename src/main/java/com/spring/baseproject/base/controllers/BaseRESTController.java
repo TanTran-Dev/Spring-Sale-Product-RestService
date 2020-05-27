@@ -4,6 +4,7 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.FieldValidationError;
 import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.modules.auth.models.dtos.AuthorizedUser;
+import com.spring.baseproject.modules.auth.models.dtos.CustomUserDetail;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.Authentication;
@@ -84,7 +85,8 @@ public abstract class BaseRESTController {
     protected AuthorizedUser getAuthorizedUser() {
         try {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            return (AuthorizedUser) authentication.getPrincipal();
+            CustomUserDetail customUserDetail = (CustomUserDetail) authentication.getPrincipal();
+            return new AuthorizedUser(customUserDetail);
         } catch (Exception e) {
             return new AuthorizedUser();
         }

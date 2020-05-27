@@ -16,8 +16,6 @@ public class NewUserDto {
     @NotEmpty
     @MinLength(6)
     private String password;
-    @ApiModelProperty(notes = "id của quyền", example = "NULLABLE", position = 2)
-    private Integer roleID;
 
     public String getUsername() {
         return username;
@@ -33,13 +31,5 @@ public class NewUserDto {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Integer getRoleID() {
-        return roleID;
-    }
-
-    public void setRoleID(Integer roleID) {
-        this.roleID = roleID;
     }
 }
