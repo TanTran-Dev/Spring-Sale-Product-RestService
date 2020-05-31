@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table
+@Table(name = "customer")
 public class Customer {
     @Id
     @Column(name = "id")

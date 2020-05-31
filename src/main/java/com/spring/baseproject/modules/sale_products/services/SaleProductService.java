@@ -61,7 +61,7 @@ public class SaleProductService {
 
     public BaseResponse updateSaleProduct(Integer id, NewSaleProductDto newSaleProductDto) {
         Product product = productRepository.findFirstById(newSaleProductDto.getProductId());
-        if (product == null){
+        if (product == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
         }
         product.setSale(true);
@@ -83,8 +83,8 @@ public class SaleProductService {
         SaleProduct saleProduct = saleProductRepository.findFirstById(id);
         Product product = productRepository.findFirstById(saleProduct.getProduct().getId());
         try {
-            saleProductRepository.deleteById(id);
             product.setSale(false);
+            saleProductRepository.deleteById(id);
             return new BaseResponse(ResponseValue.SUCCESS);
         } catch (EmptyResultDataAccessException e) {
             return new BaseResponse(ResponseValue.PROMOTION_PRODUCT_NOT_FOUND);
@@ -96,7 +96,7 @@ public class SaleProductService {
         return new BaseResponse(ResponseValue.SUCCESS);
     }
 
-    public int calPriceProductAfterPromotion(int priceProduct, float percent){
+    public int calPriceProductAfterPromotion(int priceProduct, float percent) {
         float percentPromotion = percent / 100;
         int pricePromotion = (int) (priceProduct * percentPromotion);
         int result = priceProduct - pricePromotion;
