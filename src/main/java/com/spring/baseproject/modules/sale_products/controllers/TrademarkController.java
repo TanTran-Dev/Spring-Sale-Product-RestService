@@ -4,6 +4,8 @@ import com.spring.baseproject.annotations.swagger.Response;
 import com.spring.baseproject.annotations.swagger.Responses;
 import com.spring.baseproject.base.controllers.BaseRESTController;
 import com.spring.baseproject.base.models.BaseResponse;
+import com.spring.baseproject.base.models.BaseResponseBody;
+import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.constants.StringConstants;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.NewTrademarkDto;
@@ -27,7 +29,7 @@ public class TrademarkController extends BaseRESTController {
 
     @ApiOperation(value = "Tạo mới thương hiệu")
     @Responses(value = {
-            @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponse.class)
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponseBody.class)
     })
     @PostMapping("/new-trademark")
     public BaseResponse createNewTrademark(@RequestBody @Valid NewTrademarkDto newTrademarkDto) {
@@ -41,8 +43,10 @@ public class TrademarkController extends BaseRESTController {
     })
     @GetMapping("/trademarks")
     public BaseResponse getListTrademarks(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
-                                          @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType) {
-        return trademarkService.getListTrademarkDtos(sortBy, sortType);
+                                          @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+                                          @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+                                          @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+        return trademarkService.getListTrademarkDtos(sortBy, sortType, pageIndex, pageSize);
     }
 
     @ApiOperation(value = "Xem thông tin thương hiệu")

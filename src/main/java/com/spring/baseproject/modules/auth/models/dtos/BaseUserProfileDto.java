@@ -27,6 +27,9 @@ public class BaseUserProfileDto {
     @ApiModelProperty(notes = "thông tin tài khoản người dùng")
     private UserDto userDto;
 
+    public BaseUserProfileDto() {
+    }
+
     public BaseUserProfileDto(String id, String firstName, String lastName, String address,
                               String phone, Gender gender, String userId, String username,
                               Boolean isBanned, //should be Boolean, not boolean, because isBanned may be null

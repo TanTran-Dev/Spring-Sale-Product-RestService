@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface CustomerRepository extends JpaRepository<Customer, String> {
     boolean existsByUser_Username(String username);
 
+    Customer findFirstById(String id);
+
     @Query("select new com.spring.baseproject.modules.customer.models.dtos.CustomerDto" +
             "(c.id, c.firstName, c.lastName, c.birthDay, c.address, c.phone, c.gender," +
             "u.id, u.username, u.isBanned, u.lastActive) " +

@@ -4,9 +4,11 @@ import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
+import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
@@ -50,6 +52,10 @@ public class ProductDto {
 
 
     public ProductDto() {
+    }
+
+    public ProductDto(Product product){
+        BeanUtils.copyProperties(product, this);
     }
 
     public ProductDto(Integer id, String name, Integer price, String bigImageUrl,

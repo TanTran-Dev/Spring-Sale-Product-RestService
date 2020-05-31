@@ -10,10 +10,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product findFirstById(Integer id);
+    List<Product> findAllByIdIn(List<Integer> ids);
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto(" +
             "p.id, p.name, p.price,p.bigImageUrl,p.smallImageUrl,p.isSale, p.count, p.createdDate, " +
