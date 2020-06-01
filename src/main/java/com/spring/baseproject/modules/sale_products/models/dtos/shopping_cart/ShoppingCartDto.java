@@ -3,6 +3,7 @@ package com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart;
+import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCartProduct;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -12,7 +13,7 @@ import java.util.Date;
 @ApiModel
 public class ShoppingCartDto {
     @ApiModelProperty(notes = "id giỏ hàng")
-    private int id;
+    private String id;
 
     @ApiModelProperty(notes = "thồng tin người mua", position = 1)
     private CustomerDto customerDto;
@@ -32,7 +33,7 @@ public class ShoppingCartDto {
 //    }
 
 
-    public ShoppingCartDto(Integer id,
+    public ShoppingCartDto(String id,
                            String customerId, String firstName, String lastName, LocalDate birthday,
                            String address, String phone, Gender gender,
                            String userId, String username, Boolean isBanner, Date lastActive) {
@@ -41,11 +42,11 @@ public class ShoppingCartDto {
                 address, phone, gender, userId, username, isBanner, lastActive);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

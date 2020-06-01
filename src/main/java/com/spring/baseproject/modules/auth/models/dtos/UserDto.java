@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.auth.models.dtos;
 
+import com.spring.baseproject.modules.auth.models.entities.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -26,6 +27,13 @@ public class UserDto {
         this.username = username;
         this.isBanned = isBanned == null ? false : isBanned;
         this.lastActive = lastActive;
+    }
+
+    public UserDto(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.isBanned = user.isBanned();
+        this.lastActive = user.getLastActive();
     }
 
     public String getId() {
