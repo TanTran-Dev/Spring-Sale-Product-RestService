@@ -5,8 +5,8 @@ import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
-    ShoppingCart findFirstById(Integer id);
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, String> {
+    ShoppingCart findFirstById(String shoppingCartID);
     ShoppingCart findFirstByCustomerId(String customerId);
 //    @Query("select s " +
 //            "from ShoppingCart s " +

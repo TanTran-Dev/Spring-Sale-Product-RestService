@@ -1,6 +1,7 @@
 package com.spring.baseproject.modules.sale_products.models.entities;
 
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.NewShoppingCartProductDto;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -9,9 +10,10 @@ import javax.persistence.*;
 @Table(name = "shopping_cart_product")
 public class ShoppingCartProduct {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @OneToOne(
             fetch = FetchType.LAZY
@@ -32,6 +34,7 @@ public class ShoppingCartProduct {
 
     }
 
+
     public ShoppingCartProduct(NewShoppingCartProductDto newShoppingCartProductDto){
         update(newShoppingCartProductDto);
     }
@@ -40,11 +43,11 @@ public class ShoppingCartProduct {
         BeanUtils.copyProperties(newShoppingCartProductDto, this);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

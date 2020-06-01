@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
 public interface UserRepository extends JpaRepository<User, String> {
+    User findFirstById(String userId);
 
     @Query("select u from User u " +
             "where u.username = ?1")

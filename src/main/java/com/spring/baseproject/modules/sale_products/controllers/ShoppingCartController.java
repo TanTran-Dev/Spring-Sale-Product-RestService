@@ -20,7 +20,7 @@ public class ShoppingCartController extends BaseRESTController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    @ApiOperation(value = "Lấy ra thông tin các sản phẩm trong giỏ hàng", response = Iterable.class)
+    @ApiOperation(value = "Lấy ra thông tin giỏ hàng", response = Iterable.class)
     @Responses(value = {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = ShoppingCartSwagger.class),
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)

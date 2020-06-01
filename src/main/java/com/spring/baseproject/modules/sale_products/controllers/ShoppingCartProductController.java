@@ -1,12 +1,19 @@
 package com.spring.baseproject.modules.sale_products.controllers;
 
+import com.spring.baseproject.annotations.swagger.Response;
+import com.spring.baseproject.annotations.swagger.Responses;
 import com.spring.baseproject.base.controllers.BaseRESTController;
 import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.constants.NumberConstants;
+import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.constants.StringConstants;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.NewShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.services.ShoppingCartProductService;
+import com.spring.baseproject.swagger.sale_products.shopping_cart.ShoppingCartSwagger;
+import com.spring.baseproject.swagger.sale_products.shopping_cart_product.PageShoppingCartProductSwagger;
+import com.spring.baseproject.swagger.sale_products.shopping_cart_product.ShoppingCartProductSwagger;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +27,18 @@ public class ShoppingCartProductController extends BaseRESTController {
     @Autowired
     private ShoppingCartProductService shoppingCartProductService;
 
+
     @PostMapping("/new-shopping-cart-product")
     public BaseResponse createShoppingCartProduct(@RequestBody @Valid NewShoppingCartProductDto newShoppingCartProductDto) {
-        return shoppingCartProductService.createShoppingCartProduct(newShoppingCartProductDto);
+        return shoppingCartProductService.createShoppingCartProductDto(newShoppingCartProductDto);
     }
 
+
+    @ApiOperation(value = "Lấy ra danh sách các sản phẩm trong giỏ hàng", response = Iterable.class)
+    @Responses(value = {
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = PageShoppingCartProductSwagger.class),
+            @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
+    })
     @GetMapping("/shopping-cart-products")
     public BaseResponse getPageShoppingCartProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
                                                     @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
@@ -33,8 +47,14 @@ public class ShoppingCartProductController extends BaseRESTController {
         return shoppingCartProductService.getPageShoppingCartProduct(sortBy, sortType, pageIndex, pageSize);
     }
 
+    @ApiOperation(value = "Lấy ra thông tin sản phẩm trong giỏ hàng", response = Iterable.class)
+    @Responses(value = {
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = ShoppingCartProductSwagger.class),
+            @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
+    })
     @GetMapping("/shopping-cart-products/{pId}")
     public BaseResponse getShoppingCartProduct(@PathVariable("pId") Integer productId) {
         return shoppingCartProductService.getShoppingCartProduct(productId);
     }
+
 }

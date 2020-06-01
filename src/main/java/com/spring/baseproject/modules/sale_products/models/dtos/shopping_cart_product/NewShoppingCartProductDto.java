@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModel;
 @ApiModel
 public class NewShoppingCartProductDto {
     private int productId;
-    private int shoppingCartId;
+    private String shoppingCartId;
     private int count;
 
     public NewShoppingCartProductDto() {
@@ -19,11 +19,11 @@ public class NewShoppingCartProductDto {
         this.productId = productId;
     }
 
-    public int getShoppingCartId() {
+    public String getShoppingCartId() {
         return shoppingCartId;
     }
 
-    public void setShoppingCartId(int shoppingCartId) {
+    public void setShoppingCartId(String shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
     }
 

@@ -1,6 +1,7 @@
 package com.spring.baseproject.modules.customer.models.dtos;
 
 import com.spring.baseproject.modules.auth.models.dtos.BaseUserProfileDto;
+import com.spring.baseproject.modules.auth.models.dtos.UserDto;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,6 +21,7 @@ public class CustomerDto extends BaseUserProfileDto {
 
     public CustomerDto(Customer customer) {
         BeanUtils.copyProperties(customer, this);
+        this.setUserDto(new UserDto(customer.getUser()));
     }
 
     public LocalDate getBirthDay() {

@@ -30,7 +30,7 @@ public class ShoppingCartProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public BaseResponse createShoppingCartProduct(NewShoppingCartProductDto newShoppingCartProductDto) {
+    public BaseResponse createShoppingCartProductDto(NewShoppingCartProductDto newShoppingCartProductDto) {
         Product product = productRepository.findFirstById(newShoppingCartProductDto.getProductId());
         if (product == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
@@ -41,21 +41,20 @@ public class ShoppingCartProductService {
             return new BaseResponse(ResponseValue.SHOPPING_CART_NOT_FOUND);
         }
         ShoppingCartProduct shoppingCartProduct = new ShoppingCartProduct(newShoppingCartProductDto);
-        if (shoppingCartProduct == null) {
-            return new BaseResponse(ResponseValue.SHOPPING_CART_NOT_FOUND);
-        }
         shoppingCartProduct.setProduct(product);
         shoppingCartProduct.setShoppingCart(shoppingCart);
 
+        ShoppingCartProductDto shoppingCartProductDto = new ShoppingCartProductDto(shoppingCartProduct);
         shoppingCartProductRepository.save(shoppingCartProduct);
-        return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProduct);
+
+        return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProductDto);
     }
 
     public BaseResponse getPageShoppingCartProduct(List<String> sortBy, List<String> sortType,
                                                    int pageIndex, int pageSize) {
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<ShoppingCartProduct> shoppingCartProducts = shoppingCartProductRepository.getPageShoppingCartProductDto(pageable);
-        return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProducts);
+        Page<ShoppingCartProductDto> shoppingCartProduct = shoppingCartProductRepository.getPageShoppingCartProductDtos(pageable);
+        return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProduct);
     }
 
     public BaseResponse getShoppingCartProduct(Integer productId){
