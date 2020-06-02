@@ -37,7 +37,7 @@ public class ProductPreviewDto {
 //    @ApiModelProperty(notes = "thông tin sản phẩm")
 //    private String information;
 
-    @ApiModelProperty(notes = "số lượng sản phẩm")
+    @ApiModelProperty(notes = "số lượng sản phẩm hiện có")
     private int count;
 
     @ApiModelProperty(notes = "ngày tạo sản phẩm")

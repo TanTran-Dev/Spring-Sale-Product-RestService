@@ -1,16 +1,10 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product;
 
-import com.spring.baseproject.modules.customer.models.entities.Customer;
-import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart.ShoppingCartDto;
-import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeName;
 import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCartProduct;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.beans.BeanUtils;
-
-import java.util.Date;
 
 @ApiModel
 public class ShoppingCartProductDto {
@@ -23,15 +17,19 @@ public class ShoppingCartProductDto {
     @ApiModelProperty(notes = "giỏ hàng", position = 2)
     private ShoppingCartDto shoppingCartDto;
 
-    @ApiModelProperty(notes = "số lượng", position = 3)
+    @ApiModelProperty(notes = "số lượng sản phẩm", position = 3)
     private int count;
 
     public ShoppingCartProductDto() {
     }
 
     public ShoppingCartProductDto(ShoppingCartProduct shoppingCartProduct) {
-        BeanUtils.copyProperties(shoppingCartProduct, this);
+        this.id = shoppingCartProduct.getId();
+        this.productDto = new ProductDto(shoppingCartProduct.getProduct());
+        this.shoppingCartDto = new ShoppingCartDto(shoppingCartProduct.getShoppingCart());
+        this.count = shoppingCartProduct.getCount();
     }
+
 
     public String getId() {
         return id;

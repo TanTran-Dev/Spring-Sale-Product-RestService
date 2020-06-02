@@ -1,11 +1,17 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
 public class NewShoppingCartProductDto {
+    @ApiModelProperty(notes = "id sản phẩm")
     private int productId;
+
+    @ApiModelProperty(notes = "id giỏ hàng")
     private String shoppingCartId;
+
+    @ApiModelProperty(notes = "số lượng sản phẩm")
     private int count;
 
     public NewShoppingCartProductDto() {
