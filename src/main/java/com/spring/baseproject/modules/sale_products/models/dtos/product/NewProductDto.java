@@ -17,7 +17,7 @@ public class NewProductDto {
     @ApiModelProperty(notes = "ảnh logo sản phẩm", position = 4)
     private String smallImageUrl;
 
-    @ApiModelProperty(notes = "số lượng sản phẩm", position = 5)
+    @ApiModelProperty(notes = "số lượng sản phẩm hiện có", position = 5)
     private Integer count;
 
     @ApiModelProperty(notes = "id admin", example = "NOT_EMPTY", position = 6)

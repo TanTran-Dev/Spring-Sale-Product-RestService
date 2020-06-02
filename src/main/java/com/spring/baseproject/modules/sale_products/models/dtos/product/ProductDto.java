@@ -23,7 +23,7 @@ public class ProductDto {
     @ApiModelProperty(notes = "giá sản phẩm", position = 2)
     private int price;
 
-    @ApiModelProperty(notes = "số lượng sản phẩm", position = 3)
+    @ApiModelProperty(notes = "số lượng sản phẩm hiện có", position = 3)
     private int count;
 
     @ApiModelProperty(notes = "ngày tạo sản phẩm", position = 4)

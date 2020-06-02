@@ -3,7 +3,6 @@ package com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart;
-import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCartProduct;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 

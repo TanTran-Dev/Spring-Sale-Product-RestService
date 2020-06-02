@@ -5,7 +5,11 @@ import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 public interface ShoppingCartProductRepository extends JpaRepository<ShoppingCartProduct, String> {
     ShoppingCartProduct findFirstById(String shoppingCartProductID);
@@ -20,6 +24,10 @@ public interface ShoppingCartProductRepository extends JpaRepository<ShoppingCar
             "from ShoppingCartProduct s " +
             "left join s.product " +
             "left join s.shoppingCart " +
-            "where s.id = ?1")
+            "where s.product.id = ?1")
     ShoppingCartProductDto getShoppingCartProductDto(Integer productId);
+
+    @Modifying
+    @Transactional
+    void deleteAllByIdIn(Set<String> ids);
 }
