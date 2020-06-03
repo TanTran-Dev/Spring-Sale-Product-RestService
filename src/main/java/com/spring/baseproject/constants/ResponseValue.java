@@ -36,6 +36,7 @@ public enum ResponseValue {
     CUSTOMER_NOT_FOUND(HttpStatus.NOT_FOUND, 40402, "không tìm thấy customer"),
     PROMOTION_PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND, 40403, "không tìm thấy customer"),
     SHOPPING_CART_NOT_FOUND(HttpStatus.NOT_FOUND, 40404, "không tìm thấy giỏ hàng"),
+    ORDER_PRODUCT_NOT_FOUND(HttpStatus.NOT_FOUND, 40405, "không tìm thấy đơn hàng"),
 
     //409x Conflict
     USERNAME_EXISTS(HttpStatus.CONFLICT, 4091, "tên đăng nhập đã tồn tại"),
