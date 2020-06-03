@@ -42,6 +42,22 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "where p.id = ?1")
     ProductDto getProductDto(Integer id);
 
+    @Query("select p " +
+            "from Product p " +
+            "left join p.productType " +
+            "left join p.admin " +
+            "left join p.trademark")
+    Page<Product> getPageProduct(Pageable pageable);
+
+
+    @Query("select p " +
+            "from Product p " +
+            "left join p.productType " +
+            "left join p.admin " +
+            "left join p.trademark " +
+            "where p.id = ?1")
+    Product getProduct(Integer id);
+
     @Modifying
     @Transactional
     void deleteAllByIdIn(Set<Integer> ids);

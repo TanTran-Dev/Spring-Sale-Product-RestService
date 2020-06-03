@@ -8,6 +8,7 @@ import com.spring.baseproject.modules.admin.repositories.AdminRepository;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
+import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.models.entities.ProductType;
 import com.spring.baseproject.modules.sale_products.models.entities.Trademark;
@@ -43,6 +44,7 @@ public class ProductService {
         if (productType == null) {
             return new BaseResponse(ResponseValue.PRODUCT_TYPE_NOT_FOUND);
         }
+
         Trademark trademark = trademarkRepository.findFirstById(newProductDto.getTrademarkId());
         if (trademark == null) {
             return new BaseResponse(ResponseValue.TRADEMARK_NOT_FOUND);
