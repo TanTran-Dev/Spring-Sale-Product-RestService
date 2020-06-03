@@ -4,8 +4,10 @@ import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
+import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeName;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
@@ -26,10 +28,10 @@ public class ProductPreviewDto {
     private String smallImageUrl;
 
     @ApiModelProperty(notes = "loại sản phẩm")
-    private ProductTypeDto productType;
+    private ProductTypeDto productTypeDto;
 
     @ApiModelProperty(notes = "thương hiệu sản phẩm")
-    private TrademarkDto trademark;
+    private TrademarkDto trademarkDto;
 
     @ApiModelProperty(notes = "sản phẩm có đươck giảm giá ko?")
     private boolean isSale;
@@ -49,6 +51,13 @@ public class ProductPreviewDto {
     public ProductPreviewDto() {
     }
 
+    public ProductPreviewDto(ProductTypeDto productTypeDto, TrademarkDto trademarkDto, AdminDto adminDto, Product product){
+        this.productTypeDto = productTypeDto;
+        this.trademarkDto = trademarkDto;
+        this.adminDto = adminDto;
+        BeanUtils.copyProperties(product, this);
+    }
+
     public ProductPreviewDto(Integer id, String name, Integer price, String bigImageUrl,
                       String smallImageUrl, Boolean isSale,  Integer count, Date createdDate,
                       Integer productTypeId, ProductTypeName productTypeName,
@@ -63,10 +72,10 @@ public class ProductPreviewDto {
         this.count = count;
         this.isSale = isSale;
         this.createdDate = createdDate;
-        this.productType = new ProductTypeDto(productTypeId, productTypeName);
+        this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
         this.adminDto = new AdminDto(adminId, firstName, lastName, address, phone, gender,
                 userId, username, isBanned, lastActive);
-        this.trademark = new TrademarkDto(trademarkId, trademarkName, imageUrl);
+        this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 
     public int getId() {
@@ -109,20 +118,20 @@ public class ProductPreviewDto {
         this.smallImageUrl = smallImageUrl;
     }
 
-    public ProductTypeDto getProductType() {
-        return productType;
+    public ProductTypeDto getProductTypeDto() {
+        return productTypeDto;
     }
 
-    public void setProductType(ProductTypeDto productType) {
-        this.productType = productType;
+    public void setProductTypeDto(ProductTypeDto productTypeDto) {
+        this.productTypeDto = productTypeDto;
     }
 
-    public TrademarkDto getTrademark() {
-        return trademark;
+    public TrademarkDto getTrademarkDto() {
+        return trademarkDto;
     }
 
-    public void setTrademark(TrademarkDto trademark) {
-        this.trademark = trademark;
+    public void setTrademarkDto(TrademarkDto trademarkDto) {
+        this.trademarkDto = trademarkDto;
     }
 
     public int getCount() {

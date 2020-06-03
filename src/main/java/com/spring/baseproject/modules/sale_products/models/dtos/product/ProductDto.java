@@ -39,10 +39,10 @@ public class ProductDto {
     private Boolean isSale;
 
     @ApiModelProperty(notes = "loại sản phẩm", position = 8)
-    private ProductTypeDto productType;
+    private ProductTypeDto productTypeDto;
 
     @ApiModelProperty(notes = "thương hiệu sản phẩm", position = 9)
-    private TrademarkDto trademark;
+    private TrademarkDto trademarkDto;
 
     @ApiModelProperty(notes = "người bán sản phẩm", position = 10)
     private AdminDto adminDto;
@@ -73,10 +73,10 @@ public class ProductDto {
         this.isSale = isSale;
         this.information = information;
         this.createdDate = createdDate;
-        this.productType = new ProductTypeDto(productTypeId, productTypeName);
+        this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
         this.adminDto = new AdminDto(adminId, firstName, lastName, address, phone, gender,
                 userId, username, isBanned, lastActive);
-        this.trademark = new TrademarkDto(trademarkId, trademarkName, imageUrl);
+        this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 
     public int getId() {
@@ -143,20 +143,20 @@ public class ProductDto {
         this.createdDate = createdDate;
     }
 
-    public ProductTypeDto getProductType() {
-        return productType;
+    public ProductTypeDto getProductTypeDto() {
+        return productTypeDto;
     }
 
-    public void setProductType(ProductTypeDto productType) {
-        this.productType = productType;
+    public void setProductTypeDto(ProductTypeDto productTypeDto) {
+        this.productTypeDto = productTypeDto;
     }
 
-    public TrademarkDto getTrademark() {
-        return trademark;
+    public TrademarkDto getTrademarkDto() {
+        return trademarkDto;
     }
 
-    public void setTrademark(TrademarkDto trademark) {
-        this.trademark = trademark;
+    public void setTrademarkDto(TrademarkDto trademarkDto) {
+        this.trademarkDto = trademarkDto;
     }
 
     public AdminDto getAdminDto() {
