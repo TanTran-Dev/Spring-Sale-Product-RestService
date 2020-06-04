@@ -15,12 +15,13 @@ import java.util.Set;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     Product findFirstById(Integer id);
+
     List<Product> findAllByIdIn(List<Integer> ids);
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto(" +
             "p.id, p.name, p.price,p.bigImageUrl,p.smallImageUrl,p.isSale, p.count, p.createdDate, " +
             "pt.id, pt.productTypeName, " +
-            "a.id,a.firstName,a.lastName, a.address,a.phone, a.gender, " +
+            "a.id,a.firstName,a.lastName, a.address, a.birthDay, a.phone, a.gender, " +
             "a.user.id, a.user.username, a.user.isBanned,a.user.lastActive, " +
             "t.id, t.name, t.imageUrl) " +
             "from Product p " +
@@ -32,7 +33,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto(" +
             "p.id, p.name, p.price,p.bigImageUrl,p.smallImageUrl,p.isSale, p.count, p.createdDate, p.information, " +
             "pt.id, pt.productTypeName, " +
-            "a.id,a.firstName,a.lastName, a.address,a.phone, a.gender, " +
+            "a.id,a.firstName,a.lastName, a.address, a. birthDay, a.phone, a.gender, " +
             "a.user.id, a.user.username, a.user.isBanned,a.user.lastActive, " +
             "t.id, t.name, t.imageUrl) " +
             "from Product p " +
