@@ -53,6 +53,7 @@ public abstract class BaseRESTController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public BaseResponse onRequestBodyError(HttpMessageNotReadableException e) {
+        e.printStackTrace();
         return new BaseResponse<>(ResponseValue.INVALID_OR_MISSING_REQUEST_BODY);
     }
 
