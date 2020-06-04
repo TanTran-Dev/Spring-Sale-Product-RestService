@@ -12,9 +12,10 @@ import java.util.Date;
 
 public class CustomerDto extends BaseUserProfileDto {
     @ApiModelProperty(notes = "ngày sinh")
-    private LocalDate birthDay;
+    private Date birthDay;
 
-    public CustomerDto(String id, String firstName, String lastName, LocalDate birthDay, String address, String phone, Gender gender, String userId, String username, Boolean isBanned, Date lastActive) {
+    public CustomerDto(String id, String firstName, String lastName, String address, Date birthDay, String phone,
+                       Gender gender, String userId, String username, Boolean isBanned, Date lastActive) {
         super(id, firstName, lastName, address, birthDay, phone, gender, userId, username, isBanned, lastActive);
         this.birthDay = birthDay;
     }
@@ -24,11 +25,13 @@ public class CustomerDto extends BaseUserProfileDto {
         this.setUserDto(new UserDto(customer.getUser()));
     }
 
-    public LocalDate getBirthDay() {
+    @Override
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    @Override
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }

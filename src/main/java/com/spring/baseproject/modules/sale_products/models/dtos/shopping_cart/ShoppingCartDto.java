@@ -33,12 +33,12 @@ public class ShoppingCartDto {
 
 
     public ShoppingCartDto(String id,
-                           String customerId, String firstName, String lastName, LocalDate birthday,
+                           String customerId, String firstName, String lastName, Date birthday,
                            String address, String phone, Gender gender,
                            String userId, String username, Boolean isBanner, Date lastActive) {
         this.id = id;
-        this.customerDto = new CustomerDto(customerId, firstName, lastName, birthday,
-                address, phone, gender, userId, username, isBanner, lastActive);
+        this.customerDto = new CustomerDto(customerId, firstName, lastName,
+                address, birthday, phone, gender, userId, username, isBanner, lastActive);
     }
 
     public String getId() {

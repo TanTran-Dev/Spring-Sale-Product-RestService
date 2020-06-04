@@ -62,7 +62,7 @@ public class ProductDto {
     public ProductDto(Integer id, String name, Integer price, String bigImageUrl,
                       String smallImageUrl, Boolean isSale, Integer count, Date createdDate, String information,
                       Integer productTypeId, ProductTypeName productTypeName,
-                      String adminId, String firstName, String lastName, String address, LocalDate birthDay, String phone, Gender gender,
+                      String adminId, String firstName, String lastName, String address, Date birthDay, String phone, Gender gender,
                       String userId, String username, Boolean isBanned, Date lastActive,
                       Integer trademarkId, String trademarkName, String imageUrl) {
         this.id = id;

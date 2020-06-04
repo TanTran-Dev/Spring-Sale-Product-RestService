@@ -1,10 +1,12 @@
 package com.spring.baseproject.modules.admin.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 
 public class NewAdminDto extends NewUserDto {
@@ -24,7 +26,8 @@ public class NewAdminDto extends NewUserDto {
     private String address;
 
     @ApiModelProperty(notes = "Ngày sinh", position = 7)
-    private LocalDate birthDay;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private Date birthDay;
 
     public NewAdminDto() {
     }
@@ -69,11 +72,11 @@ public class NewAdminDto extends NewUserDto {
         this.address = address;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }

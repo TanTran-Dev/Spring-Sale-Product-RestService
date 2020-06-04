@@ -20,7 +20,7 @@ public class BaseUserProfileDto {
     private String address;
 
     @ApiModelProperty(notes = "địa chỉ")
-    private LocalDate birthDay;
+    private Date birthDay;
 
     @ApiModelProperty(notes = "số điện thoại")
     private String phone;
@@ -34,7 +34,7 @@ public class BaseUserProfileDto {
     public BaseUserProfileDto() {
     }
 
-    public BaseUserProfileDto(String id, String firstName, String lastName, String address, LocalDate birthDay,
+    public BaseUserProfileDto(String id, String firstName, String lastName, String address, Date birthDay,
                               String phone, Gender gender, String userId, String username,
                               Boolean isBanned, //should be Boolean, not boolean, because isBanned may be null
                               Date lastActive) {
@@ -104,11 +104,11 @@ public class BaseUserProfileDto {
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }

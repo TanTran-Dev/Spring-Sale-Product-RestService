@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "admin")
@@ -26,8 +27,7 @@ public class Admin {
     private String address;
 
     @Column(name = "birth_day")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate birthDay;
+    private Date birthDay;
 
     @Column(name = "phone")
     private String phone;
@@ -114,11 +114,11 @@ public class Admin {
         this.user = user;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 }
