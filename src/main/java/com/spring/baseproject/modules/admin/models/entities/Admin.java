@@ -1,11 +1,13 @@
 package com.spring.baseproject.modules.admin.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "admin")
@@ -22,6 +24,10 @@ public class Admin {
 
     @Column(name = "address")
     private String address;
+
+    @Column(name = "birth_day")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate birthDay;
 
     @Column(name = "phone")
     private String phone;
@@ -108,5 +114,11 @@ public class Admin {
         this.user = user;
     }
 
+    public LocalDate getBirthDay() {
+        return birthDay;
+    }
 
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
+    }
 }

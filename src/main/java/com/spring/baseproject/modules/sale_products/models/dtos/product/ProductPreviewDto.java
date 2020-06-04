@@ -9,6 +9,7 @@ import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeN
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.BeanUtils;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ProductPreviewDto {
@@ -51,7 +52,7 @@ public class ProductPreviewDto {
     public ProductPreviewDto() {
     }
 
-    public ProductPreviewDto(ProductTypeDto productTypeDto, TrademarkDto trademarkDto, AdminDto adminDto, Product product){
+    public ProductPreviewDto(ProductTypeDto productTypeDto, TrademarkDto trademarkDto, AdminDto adminDto, Product product) {
         this.productTypeDto = productTypeDto;
         this.trademarkDto = trademarkDto;
         this.adminDto = adminDto;
@@ -59,11 +60,11 @@ public class ProductPreviewDto {
     }
 
     public ProductPreviewDto(Integer id, String name, Integer price, String bigImageUrl,
-                      String smallImageUrl, Boolean isSale,  Integer count, Date createdDate,
-                      Integer productTypeId, ProductTypeName productTypeName,
-                      String adminId, String firstName, String lastName, String address, String phone, Gender gender,
-                      String userId, String username, Boolean isBanned, Date lastActive,
-                      Integer trademarkId, String trademarkName, String imageUrl) {
+                             String smallImageUrl, Boolean isSale, Integer count, Date createdDate,
+                             Integer productTypeId, ProductTypeName productTypeName,
+                             String adminId, String firstName, String lastName, String address, LocalDate birthDay, String phone, Gender gender,
+                             String userId, String username, Boolean isBanned, Date lastActive,
+                             Integer trademarkId, String trademarkName, String imageUrl) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -73,7 +74,7 @@ public class ProductPreviewDto {
         this.isSale = isSale;
         this.createdDate = createdDate;
         this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
-        this.adminDto = new AdminDto(adminId, firstName, lastName, address, phone, gender,
+        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender,
                 userId, username, isBanned, lastActive);
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }

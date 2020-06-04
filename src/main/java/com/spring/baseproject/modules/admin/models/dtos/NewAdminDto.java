@@ -4,6 +4,8 @@ import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.time.LocalDate;
+
 
 public class NewAdminDto extends NewUserDto {
     @ApiModelProperty(notes = "First Name", position = 2)
@@ -20,6 +22,9 @@ public class NewAdminDto extends NewUserDto {
 
     @ApiModelProperty(notes = "Địa chỉ", position = 6)
     private String address;
+
+    @ApiModelProperty(notes = "Ngày sinh", position = 7)
+    private LocalDate birthDay;
 
     public NewAdminDto() {
     }
@@ -62,5 +67,13 @@ public class NewAdminDto extends NewUserDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public LocalDate getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(LocalDate birthDay) {
+        this.birthDay = birthDay;
     }
 }

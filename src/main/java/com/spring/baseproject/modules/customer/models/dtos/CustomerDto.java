@@ -15,7 +15,7 @@ public class CustomerDto extends BaseUserProfileDto {
     private LocalDate birthDay;
 
     public CustomerDto(String id, String firstName, String lastName, LocalDate birthDay, String address, String phone, Gender gender, String userId, String username, Boolean isBanned, Date lastActive) {
-        super(id, firstName, lastName, address, phone, gender, userId, username, isBanned, lastActive);
+        super(id, firstName, lastName, address, birthDay, phone, gender, userId, username, isBanned, lastActive);
         this.birthDay = birthDay;
     }
 
