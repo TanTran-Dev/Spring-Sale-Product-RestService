@@ -15,8 +15,7 @@ public class ProductType {
     private int id;
 
     @Column(name = "name", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ProductTypeName productTypeName;
+    private String productTypeName;
 
     public ProductType() {
     }
@@ -37,11 +36,11 @@ public class ProductType {
         this.id = id;
     }
 
-    public ProductTypeName getProductTypeName() {
+    public String getProductTypeName() {
         return productTypeName;
     }
 
-    public void setProductTypeName(ProductTypeName name) {
-        this.productTypeName = name;
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName;
     }
 }
