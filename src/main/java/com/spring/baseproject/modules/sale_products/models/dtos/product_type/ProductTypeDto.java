@@ -1,6 +1,5 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product_type;
 
-import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -11,12 +10,12 @@ public class ProductTypeDto {
     private int id;
 
     @ApiModelProperty(notes = ("tên loại sản phẩm"))
-    private ProductTypeName name;
+    private String name;
 
     public ProductTypeDto() {
     }
 
-    public ProductTypeDto(Integer id, ProductTypeName name) {
+    public ProductTypeDto(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -34,11 +33,11 @@ public class ProductTypeDto {
         this.id = id;
     }
 
-    public ProductTypeName getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ProductTypeName name) {
+    public void setName(String name) {
         this.name = name;
     }
 }

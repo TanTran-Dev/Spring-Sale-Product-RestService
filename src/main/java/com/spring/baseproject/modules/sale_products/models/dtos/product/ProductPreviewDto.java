@@ -5,11 +5,9 @@ import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
-import com.spring.baseproject.modules.sale_products.models.entities.ProductTypeName;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.BeanUtils;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 public class ProductPreviewDto {
@@ -61,7 +59,7 @@ public class ProductPreviewDto {
 
     public ProductPreviewDto(Integer id, String name, Integer price, String bigImageUrl,
                              String smallImageUrl, Boolean isSale, Integer count, Date createdDate,
-                             Integer productTypeId, ProductTypeName productTypeName,
+                             Integer productTypeId, String productTypeName,
                              String adminId, String firstName, String lastName, String address, Date birthDay, String phone, Gender gender,
                              String userId, String username, Boolean isBanned, Date lastActive,
                              Integer trademarkId, String trademarkName, String imageUrl) {
