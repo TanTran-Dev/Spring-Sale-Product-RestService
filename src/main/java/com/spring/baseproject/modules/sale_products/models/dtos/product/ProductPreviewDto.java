@@ -34,9 +34,9 @@ public class ProductPreviewDto {
 
     @ApiModelProperty(notes = "sản phẩm có đươck giảm giá ko?")
     private boolean isSale;
-//
-//    @ApiModelProperty(notes = "thông tin sản phẩm")
-//    private String information;
+
+    @ApiModelProperty(notes = "thông tin sản phẩm")
+    private String information;
 
     @ApiModelProperty(notes = "số lượng sản phẩm hiện có")
     private int count;
@@ -78,7 +78,7 @@ public class ProductPreviewDto {
     }
 
     public ProductPreviewDto(Product product) {
-        BeanUtils.copyProperties(product,this);
+        BeanUtils.copyProperties(product, this);
     }
 
     public int getId() {
@@ -107,6 +107,14 @@ public class ProductPreviewDto {
 
     public String getBigImageUrl() {
         return bigImageUrl;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public void setBigImageUrl(String bigImageUrl) {
