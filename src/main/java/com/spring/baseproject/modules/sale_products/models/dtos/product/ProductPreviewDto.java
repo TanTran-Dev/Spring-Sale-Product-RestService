@@ -77,6 +77,10 @@ public class ProductPreviewDto {
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 
+    public ProductPreviewDto(Product product) {
+        BeanUtils.copyProperties(product,this);
+    }
+
     public int getId() {
         return id;
     }
