@@ -46,11 +46,13 @@ public class ProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
     })
     @GetMapping("/products")
-    public BaseResponse getPageProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
-                                        @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
-                                        @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
-                                        @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
-        return productService.getPageProductDto(sortBy, sortType, pageIndex, pageSize);
+    public BaseResponse getPageProducts(
+            @RequestParam(value = "productTypeID") Integer productTypeId,
+            @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+            @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+            @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+            @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+        return productService.getPageProductDto(productTypeId, sortBy, sortType, pageIndex, pageSize);
     }
 
 
@@ -60,10 +62,11 @@ public class ProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
     })
     @GetMapping("/products/all")
-    public BaseResponse getAllProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
-                                       @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
-                                       @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
-                                       @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+    public BaseResponse getAllProducts(
+            @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+            @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+            @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+            @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
         return productService.getAllProductDto();
     }
 

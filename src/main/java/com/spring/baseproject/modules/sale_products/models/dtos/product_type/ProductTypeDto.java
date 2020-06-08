@@ -1,7 +1,9 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product_type;
 
+import com.spring.baseproject.modules.sale_products.models.entities.ProductType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.BeanUtils;
 
 
 @ApiModel
@@ -18,6 +20,10 @@ public class ProductTypeDto {
     public ProductTypeDto(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public ProductTypeDto(ProductType productType) {
+        BeanUtils.copyProperties(productType, this);
     }
 
 //    public ProductTypeDto(Integer id, ProductTypeName name) {
