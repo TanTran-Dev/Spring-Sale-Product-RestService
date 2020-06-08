@@ -83,7 +83,7 @@ public class ProductService {
                 previewDtoList.add(productPreviewDto);
             }
         }
-        return new BaseResponse(ResponseValue.SUCCESS, previewDtoList);
+        return new BaseResponse(ResponseValue.SUCCESS, new PageDto<>(previewDtoList, products.getNumber(), products.getSize(), products.getTotalElements()));
     }
 
     public BaseResponse getProductDto(Integer id) {
