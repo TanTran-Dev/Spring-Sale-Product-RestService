@@ -45,10 +45,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select p " +
             "from Product p " +
-            "left join p.productType " +
+            "left join p.productType pt " +
             "left join p.admin " +
-            "left join p.trademark")
-    Page<Product> getPageProduct(Pageable pageable);
+            "left join p.trademark tm " +
+            "where (?1 = 0 or pt.id = ?1) and (?2 = 0 or tm.id = ?2)")
+    Page<Product> getPageProduct(Integer productTypeId, Integer trademarkId, Pageable pageable);
 
 
     @Query("select p " +

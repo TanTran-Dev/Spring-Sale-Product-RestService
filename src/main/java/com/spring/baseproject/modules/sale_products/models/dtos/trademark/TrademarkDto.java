@@ -1,7 +1,9 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.trademark;
 
+import com.spring.baseproject.modules.sale_products.models.entities.Trademark;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.beans.BeanUtils;
 
 @ApiModel
 public class TrademarkDto {
@@ -21,6 +23,10 @@ public class TrademarkDto {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
+    }
+
+    public TrademarkDto(Trademark trademark) {
+        BeanUtils.copyProperties(trademark, this);
     }
 
     public int getId() {

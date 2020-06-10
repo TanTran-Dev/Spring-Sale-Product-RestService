@@ -10,6 +10,7 @@ import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProdu
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
+import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.models.entities.ProductType;
 import com.spring.baseproject.modules.sale_products.models.entities.Trademark;
@@ -61,28 +62,43 @@ public class ProductService {
         return new BaseResponse(ResponseValue.SUCCESS);
     }
 
-    public BaseResponse getPageProductDto(Integer productTypeId,
+    public BaseResponse getPageProductDto(Integer productTypeId, Integer trademarkId,
                                           List<String> sortBy, List<String> sortType,
                                           int pageIndex, int pageSize) {
-        ProductType productType = productTypesRepository.findFirstById(productTypeId);
-        if (productType == null){
-            return new BaseResponse(ResponseValue.PRODUCT_TYPE_NOT_FOUND);
+        ProductType productType = null;
+        ProductTypeDto productTypeDto = null;
+        if (productTypeId != 0) {
+            productType = productTypesRepository.findFirstById(productTypeId);
+            if (productType == null) {
+                return new BaseResponse(ResponseValue.PRODUCT_TYPE_NOT_FOUND);
+            }
+            productTypeDto = new ProductTypeDto(productType);
         }
-        ProductTypeDto productTypeDto = new ProductTypeDto(productType);
+
+
+        TrademarkDto trademarkDto = null;
+        if (trademarkId != 0) {
+            Trademark trademark = trademarkRepository.findFirstById(trademarkId);
+            if (trademark == null) {
+                return new BaseResponse(ResponseValue.TRADEMARK_NOT_FOUND);
+            }
+            trademarkDto = new TrademarkDto(trademark);
+        }
+
 
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<Product> products = productRepository.getPageProduct(pageable);
+        Page<Product> products = productRepository.getPageProduct(productTypeId, trademarkId, pageable);
         List<ProductPreviewDto> previewDtoList = new ArrayList<>();
 
-        for (Product product : products){
-            if (productTypeDto.getId() == product.getProductType().getId()){
-                product.setProductType(productType);
-                
-                ProductPreviewDto productPreviewDto = new ProductPreviewDto(product);
-                productPreviewDto.setProductTypeDto(productTypeDto);
-                previewDtoList.add(productPreviewDto);
-            }
+        for (Product product : products) {
+            product.setProductType(productType);
+
+            ProductPreviewDto productPreviewDto = new ProductPreviewDto(product);
+            productPreviewDto.setProductTypeDto(productTypeDto);
+            productPreviewDto.setTrademarkDto(trademarkDto);
+            previewDtoList.add(productPreviewDto);
         }
+
         return new BaseResponse(ResponseValue.SUCCESS, new PageDto<>(previewDtoList, products.getNumber(), products.getSize(), products.getTotalElements()));
     }
 
