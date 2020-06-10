@@ -36,6 +36,12 @@ public class Admin {
     @Column(name = "gender")
     private Gender gender;
 
+    @Column(name = "avatar")
+    private String avatarUrl;
+
+    @Column(name = "image_cover")
+    private String imageCoverUrl;
+
     @OneToOne(
             fetch = FetchType.LAZY,// always using LAZY fetching strategy
             cascade = CascadeType.ALL,
@@ -120,5 +126,21 @@ public class Admin {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getImageCoverUrl() {
+        return imageCoverUrl;
+    }
+
+    public void setImageCoverUrl(String imageCoverUrl) {
+        this.imageCoverUrl = imageCoverUrl;
     }
 }

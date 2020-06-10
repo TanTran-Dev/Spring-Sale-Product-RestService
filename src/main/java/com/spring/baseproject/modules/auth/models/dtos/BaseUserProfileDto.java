@@ -28,6 +28,12 @@ public class BaseUserProfileDto {
     @ApiModelProperty(notes = "giới tính")
     private Gender gender;
 
+    @ApiModelProperty(notes = "Ảnh đại diện")
+    private String avatarUrl;
+
+    @ApiModelProperty(notes = "Ảnh bìa")
+    private String imageCoverUrl;
+
     @ApiModelProperty(notes = "thông tin tài khoản người dùng")
     private UserDto userDto;
 
@@ -35,7 +41,7 @@ public class BaseUserProfileDto {
     }
 
     public BaseUserProfileDto(String id, String firstName, String lastName, String address, Date birthDay,
-                              String phone, Gender gender, String userId, String username,
+                              String phone, Gender gender, String avatarUrl, String imageCoverUrl, String userId, String username,
                               Boolean isBanned, //should be Boolean, not boolean, because isBanned may be null
                               Date lastActive) {
         this.id = id;
@@ -45,6 +51,8 @@ public class BaseUserProfileDto {
         this.birthDay = birthDay;
         this.phone = phone;
         this.gender = gender;
+        this.avatarUrl = avatarUrl;
+        this.imageCoverUrl = imageCoverUrl;
         this.userDto = new UserDto(userId, username, isBanned, lastActive);
     }
 
@@ -110,5 +118,21 @@ public class BaseUserProfileDto {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getImageCoverUrl() {
+        return imageCoverUrl;
+    }
+
+    public void setImageCoverUrl(String imageCoverUrl) {
+        this.imageCoverUrl = imageCoverUrl;
     }
 }

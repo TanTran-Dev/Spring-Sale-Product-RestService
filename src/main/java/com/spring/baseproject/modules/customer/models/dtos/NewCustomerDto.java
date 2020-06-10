@@ -27,6 +27,12 @@ public class NewCustomerDto extends NewUserDto {
     @ApiModelProperty(notes = "Giới tính", position = 7)
     private Gender gender;
 
+    @ApiModelProperty(notes = "Ảnh đại diện", position = 8)
+    private String avatarUrl;
+
+    @ApiModelProperty(notes = "Ảnh bìa", position = 9)
+    private String imageCoverUrl;
+
     public String getAddress() {
         return address;
     }
@@ -73,5 +79,21 @@ public class NewCustomerDto extends NewUserDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getImageCoverUrl() {
+        return imageCoverUrl;
+    }
+
+    public void setImageCoverUrl(String imageCoverUrl) {
+        this.imageCoverUrl = imageCoverUrl;
     }
 }

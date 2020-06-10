@@ -10,10 +10,10 @@ import java.util.Date;
 
 
 public class NewAdminDto extends NewUserDto {
-    @ApiModelProperty(notes = "First Name", position = 2)
+    @ApiModelProperty(notes = "Họ", position = 2)
     private String firstName;
 
-    @ApiModelProperty(notes = "Last Name", position = 3)
+    @ApiModelProperty(notes = "Tên", position = 3)
     private String lastName;
 
     @ApiModelProperty(notes = "Số điện thoại", position = 4)
@@ -25,7 +25,13 @@ public class NewAdminDto extends NewUserDto {
     @ApiModelProperty(notes = "Địa chỉ", position = 6)
     private String address;
 
-    @ApiModelProperty(notes = "Ngày sinh", position = 7)
+    @ApiModelProperty(notes = "Ảnh đại diện", position = 7)
+    private String avatarUrl;
+
+    @ApiModelProperty(notes = "Ảnh bìa", position = 8)
+    private String imageCoverUrl;
+
+    @ApiModelProperty(notes = "Ngày sinh", position = 9)
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDay;
 
@@ -78,5 +84,21 @@ public class NewAdminDto extends NewUserDto {
 
     public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getImageCoverUrl() {
+        return imageCoverUrl;
+    }
+
+    public void setImageCoverUrl(String imageCoverUrl) {
+        this.imageCoverUrl = imageCoverUrl;
     }
 }
