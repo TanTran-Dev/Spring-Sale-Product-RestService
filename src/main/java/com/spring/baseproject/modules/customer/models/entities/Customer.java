@@ -1,13 +1,11 @@
 package com.spring.baseproject.modules.customer.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.customer.models.dtos.NewCustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -27,7 +25,6 @@ public class Customer {
     private String address;
 
     @Column(name = "birth_day")
-    @JsonFormat(pattern="yyyy-MM-dd")
     private Date birthDay;
 
     @Column(name = "phone")

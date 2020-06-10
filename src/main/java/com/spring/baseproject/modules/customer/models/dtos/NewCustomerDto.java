@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.customer.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,6 +18,7 @@ public class NewCustomerDto extends NewUserDto {
     private String address;
 
     @ApiModelProperty(notes = "Ngày sinh", position = 5)
+    @JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate birthDay;
 
     @ApiModelProperty(notes = "Số điện thoại", position = 6)
