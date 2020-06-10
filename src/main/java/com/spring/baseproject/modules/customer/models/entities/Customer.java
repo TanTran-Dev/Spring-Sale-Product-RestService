@@ -34,6 +34,12 @@ public class Customer {
     @Column(name = "gender")
     private Gender gender;
 
+    @Column(name = "avatar")
+    private String avatarUrl;
+
+    @Column(name = "image_cover")
+    private String imageCoverUrl;
+
     @OneToOne(
             fetch = FetchType.LAZY,// always using LAZY fetching strategy
             cascade = CascadeType.ALL,
@@ -118,5 +124,21 @@ public class Customer {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getImageCoverUrl() {
+        return imageCoverUrl;
+    }
+
+    public void setImageCoverUrl(String imageCoverUrl) {
+        this.imageCoverUrl = imageCoverUrl;
     }
 }

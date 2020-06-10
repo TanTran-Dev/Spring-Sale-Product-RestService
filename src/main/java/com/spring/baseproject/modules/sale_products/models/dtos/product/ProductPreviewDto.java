@@ -60,7 +60,8 @@ public class ProductPreviewDto {
     public ProductPreviewDto(Integer id, String name, Integer price, String bigImageUrl,
                              String smallImageUrl, Boolean isSale, Integer count, Date createdDate,
                              Integer productTypeId, String productTypeName,
-                             String adminId, String firstName, String lastName, String address, Date birthDay, String phone, Gender gender,
+                             String adminId, String firstName, String lastName, String address, Date birthDay,
+                             String phone, Gender gender, String avatarUrl, String imageCoverUrl,
                              String userId, String username, Boolean isBanned, Date lastActive,
                              Integer trademarkId, String trademarkName, String imageUrl) {
         this.id = id;
@@ -72,7 +73,7 @@ public class ProductPreviewDto {
         this.isSale = isSale;
         this.createdDate = createdDate;
         this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
-        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender,
+        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender, avatarUrl, imageCoverUrl,
                 userId, username, isBanned, lastActive);
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
