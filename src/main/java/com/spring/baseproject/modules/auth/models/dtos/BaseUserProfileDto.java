@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.auth.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -20,6 +21,7 @@ public class BaseUserProfileDto {
     private String address;
 
     @ApiModelProperty(notes = "địa chỉ")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date birthDay;
 
     @ApiModelProperty(notes = "số điện thoại")
