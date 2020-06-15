@@ -33,6 +33,7 @@ public class AdminController extends BaseRESTController {
     })
     @GetMapping("/info")
     public BaseResponse getAdminProfile(){
+        getAuthorizedUser().getUserID();
         return adminService.getAdminDto(getAuthorizedUser().getUserID());
     }
 }

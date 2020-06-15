@@ -8,6 +8,7 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.modules.customer.services.CustomerService;
 import com.spring.baseproject.swagger.auth.authentication.AdminDtoSwagger;
+import com.spring.baseproject.swagger.auth.authentication.CustomerDtoSwagger;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,12 @@ public class CustomerController extends BaseRESTController {
                     "thực hiện xác thực người dùng bằng access token",
             response = Iterable.class)
     @Responses(value = {
-            @Response(responseValue = ResponseValue.SUCCESS, responseBody = AdminDtoSwagger.class),
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = CustomerDtoSwagger.class),
             @Response(responseValue = ResponseValue.CUSTOMER_NOT_FOUND)
     })
     @GetMapping("/info")
     public BaseResponse getCustomerProfile(){
+        getAuthorizedUser().getUserID();
         return customerService.getCustomerDto(getAuthorizedUser().getUserID());
     }
 }
