@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.order_product;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
@@ -21,9 +22,11 @@ public class OrderProductPreviewDto {
     private String deliveryAddress;
 
     @ApiModelProperty(notes = "ngày đặt hàng", position = 3)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date orderDate;
 
     @ApiModelProperty(notes = "ngày nhận hàng", position = 4)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date deliveryDate;
 
     @ApiModelProperty(notes = "thông tin sản phẩm", position = 5)
