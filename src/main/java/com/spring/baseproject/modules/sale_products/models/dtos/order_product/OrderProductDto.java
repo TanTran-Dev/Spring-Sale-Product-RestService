@@ -1,8 +1,10 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.order_product;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.sale_products.models.entities.OrderProduct;
+import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,21 +21,29 @@ public class OrderProductDto {
     private String deliveryAddress;
 
     @ApiModelProperty(notes = "ngày đặt hàng", position = 3)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date orderDate;
 
     @ApiModelProperty(notes = "ngày nhận hàng", position = 4)
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date deliveryDate;
 
     @ApiModelProperty(notes = "nội dung đơn hàng", position = 5)
     private String description;
 
-    @ApiModelProperty(notes = "thông tin người mua", position = 6)
+    @ApiModelProperty(notes = "thông tin sản phẩm", position = 6)
+    private Product product;
+
+    @ApiModelProperty(notes = "số lượng sản phẩm có trong đơn hàng", position = 7)
+    private int count;
+
+    @ApiModelProperty(notes = "thông tin người mua", position = 8)
     private Customer customer;
 
-    @ApiModelProperty(notes = "thông tin người bán", position = 7)
+    @ApiModelProperty(notes = "thông tin người bán", position = 9)
     private Admin admin;
 
-    @ApiModelProperty(notes = "thông tin giỏ hàng", position = 8)
+    @ApiModelProperty(notes = "thông tin giỏ hàng", position = 10)
     private ShoppingCart shoppingCart;
 
     public OrderProductDto() {
@@ -105,5 +115,21 @@ public class OrderProductDto {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

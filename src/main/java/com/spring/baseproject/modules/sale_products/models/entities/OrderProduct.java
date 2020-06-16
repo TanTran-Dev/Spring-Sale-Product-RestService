@@ -33,6 +33,15 @@ public class OrderProduct {
     @OneToOne(
             fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @Column(name = "count")
+    private Integer count;
+
+    @OneToOne(
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
@@ -56,7 +65,8 @@ public class OrderProduct {
     public OrderProduct() {
     }
 
-    public OrderProduct(Customer customer, Admin admin, ShoppingCart shoppingCart, NewOrderProductDto newOrderProductDto) {
+    public OrderProduct(Product product, Customer customer, Admin admin, ShoppingCart shoppingCart, NewOrderProductDto newOrderProductDto) {
+        this.product = product;
         this.customer = customer;
         this.admin = admin;
         this.shoppingCart = shoppingCart;
@@ -129,5 +139,21 @@ public class OrderProduct {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

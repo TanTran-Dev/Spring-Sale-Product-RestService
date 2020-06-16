@@ -19,13 +19,19 @@ public class NewOrderProductDto {
     @ApiModelProperty(notes = "nội dung đơn hàng", position = 4)
     private String description;
 
-    @ApiModelProperty(notes = "id người mua", position = 5)
+    @ApiModelProperty(notes = "id sản phẩm", position = 5)
+    private Integer productId;
+
+    @ApiModelProperty(notes = "số lượng sản phẩm", position = 6)
+    private Integer count;
+
+    @ApiModelProperty(notes = "id người mua", position = 7)
     private String customerId;
 
-    @ApiModelProperty(notes = "id người bán", position = 6)
+    @ApiModelProperty(notes = "id người bán", position = 8)
     private String adminId;
 
-    @ApiModelProperty(notes = "id giỏ hàng", position = 7)
+    @ApiModelProperty(notes = "id giỏ hàng", position = 9)
     private String shoppingCartId;
 
     public NewOrderProductDto() {
@@ -85,5 +91,21 @@ public class NewOrderProductDto {
 
     public void setShoppingCartId(String shoppingCartId) {
         this.shoppingCartId = shoppingCartId;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

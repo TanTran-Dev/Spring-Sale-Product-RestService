@@ -15,6 +15,7 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Stri
 
     @Query("select o " +
             "from OrderProduct o " +
+            "left join o.product " +
             "left join o.customer " +
             "left join o.admin " +
             "left join o.shoppingCart")
@@ -22,6 +23,7 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Stri
 
     @Query("select o " +
             "from OrderProduct o " +
+            "left join o.product " +
             "left join o.customer " +
             "left join o.admin " +
             "left join o.shoppingCart " +

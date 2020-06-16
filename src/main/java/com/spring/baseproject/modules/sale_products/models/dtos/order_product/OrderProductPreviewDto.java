@@ -2,8 +2,10 @@ package com.spring.baseproject.modules.sale_products.models.dtos.order_product;
 
 import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
+import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart.ShoppingCartDto;
 import com.spring.baseproject.modules.sale_products.models.entities.OrderProduct;
+import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.BeanUtils;
@@ -24,19 +26,26 @@ public class OrderProductPreviewDto {
     @ApiModelProperty(notes = "ngày nhận hàng", position = 4)
     private Date deliveryDate;
 
-    @ApiModelProperty(notes = "thông tin người mua", position = 5)
+    @ApiModelProperty(notes = "thông tin sản phẩm", position = 5)
+    private ProductDto product;
+
+    @ApiModelProperty(notes = "số lượng sản phẩm có trong đơn hàng", position = 6)
+    private int count;
+
+    @ApiModelProperty(notes = "thông tin người mua", position = 7)
     private CustomerDto customer;
 
-    @ApiModelProperty(notes = "thông tin người bán", position = 6)
+    @ApiModelProperty(notes = "thông tin người bán", position = 8)
     private AdminDto admin;
 
-    @ApiModelProperty(notes = "thông tin giỏ hàng", position = 7)
+    @ApiModelProperty(notes = "thông tin giỏ hàng", position = 9)
     private ShoppingCartDto shoppingCart;
 
     public OrderProductPreviewDto() {
     }
 
-    public OrderProductPreviewDto(CustomerDto customerDto, AdminDto adminDto, ShoppingCartDto shoppingCartDto, OrderProduct orderProduct) {
+    public OrderProductPreviewDto(ProductDto productDto, CustomerDto customerDto, AdminDto adminDto, ShoppingCartDto shoppingCartDto, OrderProduct orderProduct) {
+        this.product = productDto;
         this.customer = customerDto;
         this.admin = adminDto;
         this.shoppingCart = shoppingCartDto;
@@ -97,5 +106,21 @@ public class OrderProductPreviewDto {
 
     public void setShoppingCart(ShoppingCartDto shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public ProductDto getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductDto product) {
+        this.product = product;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
