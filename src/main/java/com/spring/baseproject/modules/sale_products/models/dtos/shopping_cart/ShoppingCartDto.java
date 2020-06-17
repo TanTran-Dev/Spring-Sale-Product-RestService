@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart;
 
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.entities.ShoppingCart;
@@ -35,10 +36,10 @@ public class ShoppingCartDto {
     public ShoppingCartDto(String id,
                            String customerId, String firstName, String lastName, Date birthday,
                            String address, String phone, Gender gender, String avatarUrl, String imageCoverUrl,
-                           String userId, String username, Boolean isBanner, Date lastActive) {
+                           String userId, String username, UserType userType, Boolean isBanner, Date lastActive) {
         this.id = id;
         this.customerDto = new CustomerDto(customerId, firstName, lastName,
-                address, birthday, phone, gender, avatarUrl, imageCoverUrl, userId, username, isBanner, lastActive);
+                address, birthday, phone, gender, avatarUrl, imageCoverUrl, userId, username, userType, isBanner, lastActive);
     }
 
     public String getId() {

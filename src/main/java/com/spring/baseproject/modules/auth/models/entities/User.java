@@ -21,6 +21,9 @@ public class User {
     private boolean isBanned;
     @Column(name = "last_active")
     private Date lastActive;
+    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     public String getId() {
         return id;
@@ -70,4 +73,11 @@ public class User {
         isBanned = banned;
     }
 
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
 }

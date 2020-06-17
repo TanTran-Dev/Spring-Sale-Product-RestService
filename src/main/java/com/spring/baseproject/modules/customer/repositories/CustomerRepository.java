@@ -13,7 +13,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
     @Query("select new com.spring.baseproject.modules.customer.models.dtos.CustomerDto" +
             "(c.id, c.firstName, c.lastName, c.address,c.birthDay, c.phone, c.gender, c.avatarUrl, c.imageCoverUrl, " +
-            "u.id, u.username, u.isBanned, u.lastActive) " +
+            "u.id, u.username, u.userType, u.isBanned, u.lastActive) " +
             "from Customer c " +
             "left join c.user u " +
             "where c.id = ?1")

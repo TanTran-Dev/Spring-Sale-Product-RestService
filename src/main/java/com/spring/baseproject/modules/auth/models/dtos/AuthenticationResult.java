@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.auth.models.dtos;
 
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -19,11 +20,13 @@ public class AuthenticationResult {
     private long accessTokenExpSecs;
     @ApiModelProperty(notes = "thời gian hiệu lực (giây) của refresh token", position = 6)
     private long refreshTokenExpSecs;
+    @ApiModelProperty(notes = "loại người dùng", position = 7)
+    private UserType userType;
 
     public AuthenticationResult() {
     }
 
-    public AuthenticationResult(OriginAuthenticationResult originAuthenticationResult,
+    public AuthenticationResult(OriginAuthenticationResult originAuthenticationResult, UserType userType,
                                 long accessTokenExpSecs, long refreshTokenExpSecs) {
         this.userID = originAuthenticationResult.getUserID();
         this.tokenType = originAuthenticationResult.getTokenType();
@@ -32,6 +35,7 @@ public class AuthenticationResult {
         this.refreshToken = originAuthenticationResult.getRefreshToken();
         this.accessTokenExpSecs = accessTokenExpSecs;
         this.refreshTokenExpSecs = refreshTokenExpSecs;
+        this.userType = userType;
     }
 
     public String getUserID() {
@@ -88,5 +92,13 @@ public class AuthenticationResult {
 
     public void setRefreshTokenExpSecs(long refreshTokenExpSecs) {
         this.refreshTokenExpSecs = refreshTokenExpSecs;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

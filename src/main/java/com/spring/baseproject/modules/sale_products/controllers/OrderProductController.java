@@ -65,7 +65,7 @@ public class OrderProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponseBody.class)
     })
     @DeleteMapping("/order-products")
-    public BaseResponse deleteProduct(@RequestBody Set<String>orderProductIDs) {
+    public BaseResponse deleteProduct(@RequestBody Set<String> orderProductIDs) {
         return orderProductService.deleteListOrderProducts(orderProductIDs);
     }
 }

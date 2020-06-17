@@ -7,6 +7,7 @@ import com.spring.baseproject.modules.auth.models.dtos.AuthenticationResult;
 import com.spring.baseproject.modules.auth.models.dtos.OriginAuthenticationResult;
 import com.spring.baseproject.modules.auth.models.dtos.RefreshTokenDto;
 import com.spring.baseproject.modules.auth.models.dtos.UsernamePasswordDto;
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.auth.repositories.UserRepository;
 import com.spring.baseproject.utils.base.Base64Utils;
 import com.spring.baseproject.utils.base.JacksonObjectMapper;
@@ -56,6 +57,7 @@ public class AuthenticationService {
                                                       LinkedMultiValueMap<String, String> requestBody) {
         HttpHeaders requestHeader = new HttpHeaders();
         requestHeader.add("Authorization", "Basic " + Base64Utils.encode(clientID+":"+secret));
+
         try {
             OriginAuthenticationResult originAuthResult = restTemplate
                     .postForObject("http://localhost:" + serverPort + "/oauth/token",
@@ -64,7 +66,9 @@ public class AuthenticationService {
             if (originAuthResult == null) {
                 return new BaseResponse(ResponseValue.UNEXPECTED_ERROR_OCCURRED);
             }
-            AuthenticationResult result = new AuthenticationResult(originAuthResult,
+
+            UserType userType = userRepository.getUserType(originAuthResult.getUserID());
+            AuthenticationResult result = new AuthenticationResult(originAuthResult, userType,
                     accessTokenExpirationTime, refreshTokenExpirationTime);
             userRepository.updateLastActive(originAuthResult.getUserID(), new Date());
             return new BaseResponse<>(ResponseValue.SUCCESS, result);

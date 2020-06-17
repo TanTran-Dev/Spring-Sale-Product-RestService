@@ -1,6 +1,7 @@
 package com.spring.baseproject.modules.auth.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -44,6 +45,7 @@ public class BaseUserProfileDto {
 
     public BaseUserProfileDto(String id, String firstName, String lastName, String address, Date birthDay,
                               String phone, Gender gender, String avatarUrl, String imageCoverUrl, String userId, String username,
+                              UserType userType,
                               Boolean isBanned, //should be Boolean, not boolean, because isBanned may be null
                               Date lastActive) {
         this.id = id;
@@ -55,7 +57,7 @@ public class BaseUserProfileDto {
         this.gender = gender;
         this.avatarUrl = avatarUrl;
         this.imageCoverUrl = imageCoverUrl;
-        this.userDto = new UserDto(userId, username, isBanned, lastActive);
+        this.userDto = new UserDto(userId, username, userType, isBanned, lastActive);
     }
 
     public String getId() {

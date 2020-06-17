@@ -1,6 +1,7 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product;
 
 import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
@@ -62,7 +63,7 @@ public class ProductPreviewDto {
                              Integer productTypeId, String productTypeName,
                              String adminId, String firstName, String lastName, String address, Date birthDay,
                              String phone, Gender gender, String avatarUrl, String imageCoverUrl,
-                             String userId, String username, Boolean isBanned, Date lastActive,
+                             String userId, String username, UserType userType, Boolean isBanned, Date lastActive,
                              Integer trademarkId, String trademarkName, String imageUrl) {
         this.id = id;
         this.name = name;
@@ -74,7 +75,7 @@ public class ProductPreviewDto {
         this.createdDate = createdDate;
         this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
         this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender, avatarUrl, imageCoverUrl,
-                userId, username, isBanned, lastActive);
+                userId, username, userType, isBanned, lastActive);
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 

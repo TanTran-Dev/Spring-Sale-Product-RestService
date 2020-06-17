@@ -12,7 +12,7 @@ public interface AdminRepository extends JpaRepository<Admin, String> {
 
     @Query("select new com.spring.baseproject.modules.admin.models.dtos.AdminDto" +
             "(a.id, a.firstName, a.lastName, a.address, a.birthDay, a.phone, a.gender, a.avatarUrl, a.imageCoverUrl, " +
-            "u.id, u.username, u.isBanned, u.lastActive) " +
+            "u.id, u.username, u.userType, u.isBanned, u.lastActive) " +
             "from Admin a " +
             "left join a.user u " +
             "where a.id = ?1")
