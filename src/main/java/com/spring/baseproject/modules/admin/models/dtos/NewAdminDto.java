@@ -2,6 +2,7 @@ package com.spring.baseproject.modules.admin.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -34,6 +35,9 @@ public class NewAdminDto extends NewUserDto {
     @ApiModelProperty(notes = "Ngày sinh", position = 9)
     @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDay;
+
+    @ApiModelProperty(notes = "Loại người dùng", position = 10)
+    private UserType userType;
 
     public NewAdminDto() {
     }
@@ -100,5 +104,13 @@ public class NewAdminDto extends NewUserDto {
 
     public void setImageCoverUrl(String imageCoverUrl) {
         this.imageCoverUrl = imageCoverUrl;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

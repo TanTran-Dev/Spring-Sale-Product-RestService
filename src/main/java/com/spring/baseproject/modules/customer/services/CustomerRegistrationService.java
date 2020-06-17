@@ -31,6 +31,7 @@ public class CustomerRegistrationService {
         }
 
         Customer customer = new Customer(newCustomerDto, user);
+        customer.getUser().setUserType(newCustomerDto.getUserType());
         customerRepository.save(customer);
         return new BaseResponse(ResponseValue.SUCCESS);
     }

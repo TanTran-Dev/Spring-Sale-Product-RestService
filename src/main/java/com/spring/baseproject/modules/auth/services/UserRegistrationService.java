@@ -36,6 +36,7 @@ public class UserRegistrationService {
         user.setUsername(newUserDto.getUsername());
         String hashPassword = passwordEncoder.encode(newUserDto.getPassword());
         user.setPassword(hashPassword);
+
         return userRepository.save(user);
     }
 }

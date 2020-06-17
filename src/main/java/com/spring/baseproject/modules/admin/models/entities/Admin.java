@@ -3,6 +3,7 @@ package com.spring.baseproject.modules.admin.models.entities;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
 import com.spring.baseproject.modules.auth.models.entities.User;
+import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import org.springframework.beans.BeanUtils;
 
@@ -47,7 +48,7 @@ public class Admin {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Admin() {

@@ -29,6 +29,7 @@ public class AdminRegistrationService {
         }
 
         Admin admin = new Admin(newAdminDto, user);
+        admin.getUser().setUserType(newAdminDto.getUserType());
         adminRepository.save(admin);
         return new BaseResponse(ResponseValue.SUCCESS);
     }
