@@ -4,6 +4,7 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
+import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.admin.repositories.AdminRepository;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProductDto;
@@ -100,6 +101,29 @@ public class ProductService {
         }
 
         return new BaseResponse(ResponseValue.SUCCESS, new PageDto<>(previewDtoList, products.getNumber(), products.getSize(), products.getTotalElements()));
+    }
+
+    public BaseResponse getPageProductDtoByAdmin(String adminId,
+                                                 List<String> sortBy, List<String> sortType,
+                                                 int pageIndex, int pageSize){
+        Admin admin = adminRepository.findFirstById(adminId);
+        if (admin == null){
+            return new BaseResponse(ResponseValue.ADMIN_NOT_FOUND);
+        }
+        AdminDto adminDto = new AdminDto(admin);
+
+        Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
+        Page<Product> products = productRepository.getPageProductByAdmin(adminId, pageable);
+        List<ProductPreviewDto> previewDtoList = new ArrayList<>();
+
+        for (Product product : products) {
+
+            ProductPreviewDto productPreviewDto = new ProductPreviewDto(product);
+            productPreviewDto.setAdminDto(adminDto);
+            previewDtoList.add(productPreviewDto);
+        }
+        return new BaseResponse(ResponseValue.SUCCESS,
+                new PageDto<>(previewDtoList, products.getNumber(), products.getSize(), products.getTotalElements()));
     }
 
     public BaseResponse getProductDto(Integer id) {

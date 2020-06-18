@@ -56,6 +56,21 @@ public class ProductController extends BaseRESTController {
         return productService.getPageProductDto(productTypeId, trademarkId, sortBy, sortType, pageIndex, pageSize);
     }
 
+    @ApiOperation(value = "Lấy danh sách các sản phẩm với admin", response = Iterable.class)
+    @Responses(value = {
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = PageProductDtoSwagger.class),
+            @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
+    })
+    @GetMapping("/products/{adminId}")
+    public BaseResponse getPageProductByAdmin(
+            @RequestParam(value = "adminId", defaultValue = "0") String adminId,
+            @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+            @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+            @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+            @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+        return productService.getPageProductDtoByAdmin(adminId, sortBy, sortType, pageIndex, pageSize);
+    }
+
 
     @ApiOperation(value = "Lấy danh sách các sản phẩm", response = Iterable.class)
     @Responses(value = {

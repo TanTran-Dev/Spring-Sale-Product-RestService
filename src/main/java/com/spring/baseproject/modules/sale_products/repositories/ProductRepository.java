@@ -40,6 +40,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
             "where (?1 = 0 or pt.id = ?1) and (?2 = 0 or tm.id = ?2)")
     Page<Product> getPageProduct(Integer productTypeId, Integer trademarkId, Pageable pageable);
 
+    @Query("select p " +
+            "from Product p " +
+            "left join p.productType pt " +
+            "left join p.admin a " +
+            "left join p.trademark tm " +
+            "where a.id = ?1")
+    Page<Product> getPageProductByAdmin(String adminId, Pageable pageable);
 
     @Query("select p " +
             "from Product p " +
