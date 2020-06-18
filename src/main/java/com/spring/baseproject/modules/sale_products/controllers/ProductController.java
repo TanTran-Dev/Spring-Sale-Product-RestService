@@ -91,7 +91,7 @@ public class ProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = ProductDtoSwagger.class),
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
     })
-    @GetMapping("/products/{id}")
+    @GetMapping("/product/{id}")
     public BaseResponse getPageProducts(@PathVariable("id") Integer productId) {
         return productService.getProductDto(productId);
     }
