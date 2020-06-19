@@ -22,6 +22,7 @@ import com.spring.baseproject.modules.sale_products.repositories.ProductTypesRep
 import com.spring.baseproject.modules.sale_products.repositories.TrademarkRepository;
 import com.spring.baseproject.utils.jpa.SortAndPageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -132,5 +133,14 @@ public class CommentService {
         CommentDto commentDto = new CommentDto(customerDto, productDto, comment);
 
         return new BaseResponse(ResponseValue.SUCCESS, commentDto);
+    }
+
+    public BaseResponse deleteComment(String commentId){
+        try {
+            commentRepository.deleteById(commentId);
+            return new BaseResponse(ResponseValue.SUCCESS);
+        } catch (EmptyResultDataAccessException e) {
+            return new BaseResponse(ResponseValue.COMMENT_NOT_FOUND);
+        }
     }
 }

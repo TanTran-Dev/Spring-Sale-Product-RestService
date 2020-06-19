@@ -63,4 +63,15 @@ public class CommentController extends BaseRESTController {
                                       @RequestParam("content") String content) {
         return commentService.updateComment(commentId, content);
     }
+
+    @ApiOperation(value = "Xóa một bình luận", response = Iterable.class)
+    @Responses(value = {
+            @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponseBody.class),
+            @Response(responseValue = ResponseValue.COMMENT_NOT_FOUND)
+    })
+    @AuthorizationRequired
+    @DeleteMapping("/comments/{id}")
+    public BaseResponse deleteProduct(@PathVariable("id") String commentId) {
+        return commentService.deleteComment(commentId);
+    }
 }
