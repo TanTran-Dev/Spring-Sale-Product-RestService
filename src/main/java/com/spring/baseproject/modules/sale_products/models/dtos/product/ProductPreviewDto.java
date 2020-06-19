@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
@@ -43,6 +44,7 @@ public class ProductPreviewDto {
     private int count;
 
     @ApiModelProperty(notes = "ngày tạo sản phẩm")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date createdDate;
 
     @ApiModelProperty(notes = "người bán sản phẩm")
