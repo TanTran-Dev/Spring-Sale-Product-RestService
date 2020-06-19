@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.comment;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.entities.Comment;
@@ -18,6 +19,7 @@ public class CommentDto {
     private String content;
 
     @ApiModelProperty(notes = "thời gian bình luận", position = 2)
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss aa")
     private Date commentDate;
 
     @ApiModelProperty(notes = "thông tin người mua", position = 3)
