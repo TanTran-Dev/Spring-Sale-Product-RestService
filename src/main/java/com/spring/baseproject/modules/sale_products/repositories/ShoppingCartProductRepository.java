@@ -18,14 +18,14 @@ public interface ShoppingCartProductRepository extends JpaRepository<ShoppingCar
             "from ShoppingCartProduct s " +
             "left join s.product " +
             "left join s.shoppingCart")
-    Page<ShoppingCartProductDto> getPageShoppingCartProductDtos(Pageable pageable);
+    Page<ShoppingCartProduct> getPageShoppingCartProduct(Pageable pageable);
 
     @Query("select s " +
             "from ShoppingCartProduct s " +
             "left join s.product " +
             "left join s.shoppingCart " +
             "where s.product.id = ?1")
-    ShoppingCartProductDto getShoppingCartProductDto(Integer productId);
+    ShoppingCartProduct getShoppingCartProduct(Integer productId);
 
     @Modifying
     @Transactional

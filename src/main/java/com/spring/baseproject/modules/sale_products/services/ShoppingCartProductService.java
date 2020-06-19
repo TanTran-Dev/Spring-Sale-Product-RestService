@@ -1,10 +1,12 @@
 package com.spring.baseproject.modules.sale_products.services;
 
 import com.spring.baseproject.base.models.BaseResponse;
+import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.admin.repositories.AdminRepository;
+import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.NewShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.ShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.models.entities.*;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -67,18 +70,27 @@ public class ShoppingCartProductService {
         return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProductDto);
     }
 
-    public BaseResponse getPageShoppingCartProduct(List<String> sortBy, List<String> sortType,
-                                                   int pageIndex, int pageSize) {
+    public BaseResponse getPageShoppingCartProductDto(List<String> sortBy, List<String> sortType,
+                                                      int pageIndex, int pageSize) {
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<ShoppingCartProductDto> shoppingCartProduct = shoppingCartProductRepository.getPageShoppingCartProductDtos(pageable);
-        return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProduct);
+        Page<ShoppingCartProduct> pageShoppingCartProduct = shoppingCartProductRepository.getPageShoppingCartProduct(pageable);
+        List<ShoppingCartProductDto> shoppingCartProductDtos = new ArrayList<>();
+
+        for (ShoppingCartProduct shoppingCartProduct : pageShoppingCartProduct) {
+            ShoppingCartProductDto shoppingCartProductDto = new ShoppingCartProductDto(shoppingCartProduct);
+            shoppingCartProductDtos.add(shoppingCartProductDto);
+        }
+        return new BaseResponse(ResponseValue.SUCCESS,
+                new PageDto<>(shoppingCartProductDtos, pageShoppingCartProduct.getNumber(),
+                        pageShoppingCartProduct.getSize(), pageShoppingCartProduct.getTotalElements()));
     }
 
-    public BaseResponse getShoppingCartProduct(Integer productId) {
-        ShoppingCartProductDto shoppingCartProductDto = shoppingCartProductRepository.getShoppingCartProductDto(productId);
-        if (shoppingCartProductDto == null) {
+    public BaseResponse getShoppingCartProductDto(Integer productId) {
+        ShoppingCartProduct shoppingCartProduct = shoppingCartProductRepository.getShoppingCartProduct(productId);
+        if (shoppingCartProduct == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
         }
+        ShoppingCartProductDto shoppingCartProductDto = new ShoppingCartProductDto(shoppingCartProduct);
         return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProductDto);
     }
 

@@ -31,6 +31,7 @@ public class CommentController extends BaseRESTController {
     @Responses(value = {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponseBody.class)
     })
+    @AuthorizationRequired
     @PostMapping("/new-comment")
     public BaseResponse addOrderProduct(@RequestBody @Valid NewCommentDto newCommentDto) {
         return commentService.createNewComment(newCommentDto);
@@ -41,12 +42,14 @@ public class CommentController extends BaseRESTController {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = PageCommentsSwagger.class),
             @Response(responseValue = ResponseValue.COMMENT_NOT_FOUND)
     })
-    @GetMapping("/comments")
-    public BaseResponse getPageProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
-                                        @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
-                                        @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
-                                        @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
-        return commentService.getPageCommentDto(sortBy, sortType, pageIndex, pageSize);
+    @GetMapping("/comments{productId}")
+    public BaseResponse getPageProducts(
+            @RequestParam(value = "productId", defaultValue = "0") Integer productId,
+            @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+            @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+            @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+            @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+        return commentService.getPageCommentDto(productId, sortBy, sortType, pageIndex, pageSize);
     }
 
     @ApiOperation(value = "Chỉnh sửa bình luận", response = Iterable.class)

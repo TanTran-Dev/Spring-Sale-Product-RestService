@@ -71,9 +71,11 @@ public class CommentService {
         return new BaseResponse(ResponseValue.SUCCESS, commentDto);
     }
 
-    public BaseResponse getPageCommentDto(List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
+    public BaseResponse getPageCommentDto(
+            Integer productId,
+            List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<Comment> commentPage = commentRepository.getPageComment(pageable);
+        Page<Comment> commentPage = commentRepository.getPageComment(productId, pageable);
 
         List<CommentDto> listResult = new ArrayList<>();
 
@@ -84,7 +86,7 @@ public class CommentService {
             }
             CustomerDto customerDto = new CustomerDto(customer);
 
-            Product product = productRepository.findFirstById(comment.getProduct().getId());
+            Product product = productRepository.findFirstById(productId);
             if (product == null) {
                 return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
             }

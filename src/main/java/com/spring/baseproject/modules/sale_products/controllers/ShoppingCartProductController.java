@@ -48,7 +48,7 @@ public class ShoppingCartProductController extends BaseRESTController {
                                                     @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
                                                     @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
                                                     @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
-        return shoppingCartProductService.getPageShoppingCartProduct(sortBy, sortType, pageIndex, pageSize);
+        return shoppingCartProductService.getPageShoppingCartProductDto(sortBy, sortType, pageIndex, pageSize);
     }
 
     @ApiOperation(value = "Lấy ra thông tin sản phẩm trong giỏ hàng", response = Iterable.class)
@@ -58,7 +58,7 @@ public class ShoppingCartProductController extends BaseRESTController {
     })
     @GetMapping("/shopping-cart-products/{pId}")
     public BaseResponse getShoppingCartProduct(@PathVariable("pId") Integer productId) {
-        return shoppingCartProductService.getShoppingCartProduct(productId);
+        return shoppingCartProductService.getShoppingCartProductDto(productId);
     }
 
     @ApiOperation(value = "Cập nhật sản phẩm trong giỏ hàng", response = Iterable.class)

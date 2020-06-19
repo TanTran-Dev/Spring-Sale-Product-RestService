@@ -13,8 +13,9 @@ public interface CommentRepository extends JpaRepository<Comment, String> {
     @Query("select c " +
             "from Comment c " +
             "left join c.customer " +
-            "left join c.product")
-    Page<Comment> getPageComment(Pageable pageable);
+            "left join c.product p " +
+            "where p.id = ?1")
+    Page<Comment> getPageComment(Integer productId, Pageable pageable);
 
     @Query("select c " +
             "from Comment c " +
