@@ -1,6 +1,7 @@
 package com.spring.baseproject.modules.admin.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
 import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;

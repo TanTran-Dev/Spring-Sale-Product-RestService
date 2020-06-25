@@ -28,6 +28,7 @@ public class Admin {
     private String address;
 
     @Column(name = "birth_day")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDay;
 
     @Column(name = "phone")

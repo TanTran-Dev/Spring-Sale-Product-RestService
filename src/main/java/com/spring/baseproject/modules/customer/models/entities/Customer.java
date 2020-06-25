@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.customer.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.customer.models.dtos.NewCustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
@@ -25,6 +26,7 @@ public class Customer {
     private String address;
 
     @Column(name = "birth_day")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date birthDay;
 
     @Column(name = "phone")
