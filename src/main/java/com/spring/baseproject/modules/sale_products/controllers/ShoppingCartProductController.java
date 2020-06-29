@@ -44,11 +44,12 @@ public class ShoppingCartProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
     })
     @GetMapping("/shopping-cart-products")
-    public BaseResponse getPageShoppingCartProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+    public BaseResponse getPageShoppingCartProducts(@RequestParam(value = "customerId") String customerId,
+                                                    @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
                                                     @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
                                                     @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
                                                     @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
-        return shoppingCartProductService.getPageShoppingCartProductDto(sortBy, sortType, pageIndex, pageSize);
+        return shoppingCartProductService.getPageShoppingCartProductDto(customerId, sortBy, sortType, pageIndex, pageSize);
     }
 
     @ApiOperation(value = "Lấy ra thông tin sản phẩm trong giỏ hàng", response = Iterable.class)
@@ -68,7 +69,7 @@ public class ShoppingCartProductController extends BaseRESTController {
     })
     @PutMapping("/shopping-cart-product")
     public BaseResponse updateShoppingCartProduct(@RequestParam("scpID") String shoppingCartProductID,
-                                                  @RequestBody @Valid NewShoppingCartProductDto newShoppingCartProductDto){
+                                                  @RequestBody @Valid NewShoppingCartProductDto newShoppingCartProductDto) {
         return shoppingCartProductService.updateShoppingCartProduct(shoppingCartProductID, newShoppingCartProductDto);
     }
 
@@ -77,7 +78,7 @@ public class ShoppingCartProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.SUCCESS, responseBody = BaseResponseBody.class)
     })
     @DeleteMapping("/shopping-cart-products")
-    public BaseResponse deleteListShoppingCartProduct(@RequestBody Set<String> shoppingCartProductIDs){
+    public BaseResponse deleteListShoppingCartProduct(@RequestBody Set<String> shoppingCartProductIDs) {
         return shoppingCartProductService.deleteListShoppingCart(shoppingCartProductIDs);
     }
 }

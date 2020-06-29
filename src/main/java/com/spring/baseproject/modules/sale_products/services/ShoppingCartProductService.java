@@ -6,6 +6,9 @@ import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
 import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.admin.repositories.AdminRepository;
+import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
+import com.spring.baseproject.modules.customer.models.entities.Customer;
+import com.spring.baseproject.modules.customer.repositories.CustomerRepository;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.NewShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.ShoppingCartProductDto;
@@ -39,6 +42,9 @@ public class ShoppingCartProductService {
     private TrademarkRepository trademarkRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private AdminRepository adminRepository;
 
     public BaseResponse createShoppingCartProductDto(NewShoppingCartProductDto newShoppingCartProductDto) {
@@ -70,10 +76,15 @@ public class ShoppingCartProductService {
         return new BaseResponse(ResponseValue.SUCCESS, shoppingCartProductDto);
     }
 
-    public BaseResponse getPageShoppingCartProductDto(List<String> sortBy, List<String> sortType,
+    public BaseResponse getPageShoppingCartProductDto(String customerId, List<String> sortBy, List<String> sortType,
                                                       int pageIndex, int pageSize) {
+        Customer customer = customerRepository.findFirstById(customerId);
+        if (customer == null){
+            return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
+        }
+
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<ShoppingCartProduct> pageShoppingCartProduct = shoppingCartProductRepository.getPageShoppingCartProduct(pageable);
+        Page<ShoppingCartProduct> pageShoppingCartProduct = shoppingCartProductRepository.getPageShoppingCartProduct(customerId, pageable);
         List<ShoppingCartProductDto> shoppingCartProductDtos = new ArrayList<>();
 
         for (ShoppingCartProduct shoppingCartProduct : pageShoppingCartProduct) {

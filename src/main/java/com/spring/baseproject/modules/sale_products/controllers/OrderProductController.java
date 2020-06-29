@@ -1,5 +1,6 @@
 package com.spring.baseproject.modules.sale_products.controllers;
 
+import com.spring.baseproject.annotations.auth.AuthorizationRequired;
 import com.spring.baseproject.annotations.swagger.Response;
 import com.spring.baseproject.annotations.swagger.Responses;
 import com.spring.baseproject.base.controllers.BaseRESTController;
@@ -43,11 +44,13 @@ public class OrderProductController extends BaseRESTController {
             @Response(responseValue = ResponseValue.PRODUCT_NOT_FOUND)
     })
     @GetMapping("/order-products")
-    public BaseResponse getPageProducts(@RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
-                                        @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
-                                        @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
-                                        @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
-        return orderProductService.getPageOrderProductPreviewDtos(sortBy, sortType, pageIndex, pageSize);
+    public BaseResponse getPageProducts(
+            @RequestParam(value = "customerId") String customerId,
+            @RequestParam(value = StringConstants.SORT_BY, defaultValue = "", required = false) List<String> sortBy,
+            @RequestParam(value = StringConstants.SORT_TYPE, defaultValue = "", required = false) List<String> sortType,
+            @RequestParam(value = StringConstants.PAGE_INDEX, defaultValue = "0") int pageIndex,
+            @RequestParam(value = StringConstants.PAGE_SIZE, defaultValue = NumberConstants.MAX_PAGE_SIZE + "") int pageSize) {
+        return orderProductService.getPageOrderProductPreviewDtos(customerId, sortBy, sortType, pageIndex, pageSize);
     }
 
     @ApiOperation(value = "Xem thông tin chi tiết đơn hàng", response = Iterable.class)

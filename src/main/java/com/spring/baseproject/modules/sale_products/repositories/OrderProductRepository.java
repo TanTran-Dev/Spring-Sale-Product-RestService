@@ -18,8 +18,9 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Stri
             "left join o.product " +
             "left join o.customer " +
             "left join o.admin " +
-            "left join o.shoppingCart")
-    Page<OrderProduct> getPageOrderProduct(Pageable pageable);
+            "left join o.shoppingCart sc " +
+            "where sc.customer.id = ?1")
+    Page<OrderProduct> getPageOrderProduct(String customerId, Pageable pageable);
 
     @Query("select o " +
             "from OrderProduct o " +
@@ -28,7 +29,7 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Stri
             "left join o.admin " +
             "left join o.shoppingCart " +
             "where o.id = ?1")
-    OrderProduct getOrderProduct (String orderId);
+    OrderProduct getOrderProduct(String orderId);
 
     @Modifying
     @Transactional

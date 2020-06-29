@@ -80,9 +80,10 @@ public class OrderProductService {
         return new BaseResponse(ResponseValue.SUCCESS, orderProductPreviewDto);
     }
 
-    public BaseResponse getPageOrderProductPreviewDtos(List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
+    public BaseResponse getPageOrderProductPreviewDtos(String customerId, List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
+
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<OrderProduct> pageResult = orderProductRepository.getPageOrderProduct(pageable);
+        Page<OrderProduct> pageResult = orderProductRepository.getPageOrderProduct(customerId, pageable);
 
         List<OrderProductPreviewDto> listResult = new ArrayList<>();
         for (OrderProduct orderProduct : pageResult.getContent()) {
