@@ -11,8 +11,7 @@ public interface AdminRepository extends JpaRepository<Admin, String> {
     boolean existsByUser_Username(String username);
 
     @Query("select new com.spring.baseproject.modules.admin.models.dtos.AdminDto" +
-            "(a.id, a.firstName, a.lastName, a.address, a.birthDay, a.phone, a.gender, a.avatarUrl, a.imageCoverUrl, " +
-            "u.id, u.username, u.userType, u.isBanned, u.lastActive) " +
+            "(a.id, a.firstName, a.lastName, a.address, a.birthDay, a.phone, a.gender, a.avatarUrl, a.imageCoverUrl) " +
             "from Admin a " +
             "left join a.user u " +
             "where a.id = ?1")

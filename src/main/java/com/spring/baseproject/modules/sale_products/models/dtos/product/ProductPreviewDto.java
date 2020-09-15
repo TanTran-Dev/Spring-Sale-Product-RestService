@@ -76,8 +76,7 @@ public class ProductPreviewDto {
         this.isSale = isSale;
         this.createdDate = createdDate;
         this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
-        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender, avatarUrl, imageCoverUrl,
-                userId, username, userType, isBanned, lastActive);
+        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender, avatarUrl, imageCoverUrl);
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 
