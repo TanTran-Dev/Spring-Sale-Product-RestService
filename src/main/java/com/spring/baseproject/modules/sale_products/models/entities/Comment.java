@@ -1,6 +1,5 @@
 package com.spring.baseproject.modules.sale_products.models.entities;
 
-import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.sale_products.models.dtos.comment.NewCommentDto;
 import org.hibernate.annotations.GenericGenerator;
@@ -21,7 +20,7 @@ public class Comment {
     private String content;
 
     @Column(name = "comment_date")
-    private Date commnentDate;
+    private Date createdDate;
 
     @ManyToOne(
             fetch = FetchType.LAZY
@@ -37,7 +36,7 @@ public class Comment {
 
     @PrePersist
     public void onPrePersist() {
-        this.commnentDate = new Date();
+        this.createdDate = new Date();
     }
 
     public Comment() {
@@ -69,12 +68,12 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getCommnentDate() {
-        return commnentDate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCommnentDate(Date commnentDate) {
-        this.commnentDate = commnentDate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
     public Customer getCustomer() {

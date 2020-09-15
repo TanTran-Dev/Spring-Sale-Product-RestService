@@ -55,58 +55,24 @@ public class CommentService {
         if (customer == null) {
             return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
         }
-        CustomerDto customerDto = new CustomerDto(customer);
 
         Product product = productRepository.findFirstById(newCommentDto.getProductId());
         if (product == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
         }
-        ProductDto productDto = new ProductDto(product);
 
         Comment comment = new Comment(customer, product, newCommentDto);
 
         commentRepository.save(comment);
-
-        CommentDto commentDto = new CommentDto(customerDto, productDto, comment);
-
-        return new BaseResponse(ResponseValue.SUCCESS, commentDto);
+        return new BaseResponse(ResponseValue.SUCCESS);
     }
 
-    public BaseResponse getPageCommentDto(
-            Integer productId,
-            List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
+    public BaseResponse getPageCommentDto(Integer productId,
+                                          List<String> sortBy, List<String> sortType, int pageIndex, int pageSize) {
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<Comment> commentPage = commentRepository.getPageComment(productId, pageable);
+        Page<CommentDto> commentPage = commentRepository.getPageComment(productId, pageable);
 
-        List<CommentDto> listResult = new ArrayList<>();
-
-        for (Comment comment : commentPage.getContent()) {
-            Customer customer = customerRepository.findFirstById(comment.getCustomer().getId());
-            if (customer == null) {
-                return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
-            }
-            CustomerDto customerDto = new CustomerDto(customer);
-
-            Product product = productRepository.findFirstById(productId);
-            if (product == null) {
-                return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
-            }
-            ProductDto productDto = new ProductDto(product);
-
-            ProductTypeDto productTypeDto = productTypesRepository.getProductTypeDto(product.getProductType().getId());
-            TrademarkDto trademarkDto = trademarkRepository.getTrademarkDto(product.getTrademark().getId());
-            AdminDto adminDto = adminRepository.getAdminDto(product.getAdmin().getId());
-
-            CommentDto commentDto = new CommentDto(customerDto, productDto, comment);
-            commentDto.getProductDto().setProductTypeDto(productTypeDto);
-            commentDto.getProductDto().setTrademarkDto(trademarkDto);
-            commentDto.getProductDto().setAdminDto(adminDto);
-
-            listResult.add(commentDto);
-        }
-        PageDto<CommentDto> commentDtoPageDto = new PageDto<>(
-                listResult, commentPage.getNumber(), commentPage.getSize(), commentPage.getTotalElements());
-        return new BaseResponse(ResponseValue.SUCCESS, commentDtoPageDto);
+        return new BaseResponse(ResponseValue.SUCCESS, commentPage);
     }
 
     public BaseResponse updateComment(String commentId, String content) {
@@ -120,19 +86,15 @@ public class CommentService {
         if (customer == null) {
             return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
         }
-        CustomerDto customerDto = new CustomerDto(customer);
 
         Product product = productRepository.findFirstById(comment.getProduct().getId());
         if (product == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
         }
-        ProductDto productDto = new ProductDto(product);
 
         commentRepository.save(comment);
 
-        CommentDto commentDto = new CommentDto(customerDto, productDto, comment);
-
-        return new BaseResponse(ResponseValue.SUCCESS, commentDto);
+        return new BaseResponse(ResponseValue.SUCCESS);
     }
 
     public BaseResponse deleteComment(String commentId){

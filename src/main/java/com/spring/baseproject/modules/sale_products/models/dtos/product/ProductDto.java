@@ -1,18 +1,22 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product;
 
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
-import com.spring.baseproject.modules.auth.models.entities.UserType;
-import com.spring.baseproject.modules.demo_building.models.entities.Gender;
-import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
-import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
 @ApiModel
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductDto {
     @ApiModelProperty(notes = "id sản phẩm")
     private int id;
@@ -27,6 +31,7 @@ public class ProductDto {
     private int count;
 
     @ApiModelProperty(notes = "ngày tạo sản phẩm", position = 4)
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date createdDate;
 
     @ApiModelProperty(notes = "ảnh cover sản phẩm", position = 5)
@@ -35,152 +40,20 @@ public class ProductDto {
     @ApiModelProperty(notes = "ảnh nhỏ sản phẩm", position = 6)
     private String smallImageUrl;
 
-    @ApiModelProperty(notes = "sản phẩm có được giảm giá ko?", example = "True, False", position = 7)
-    private Boolean isSale;
+    @ApiModelProperty(notes = "loại sản phẩm", position = 7)
+    private Integer productTypeID;
 
-    @ApiModelProperty(notes = "loại sản phẩm", position = 8)
-    private ProductTypeDto productTypeDto;
+    @ApiModelProperty(notes = "thương hiệu sản phẩm", position = 8)
+    private Integer trademarkID;
 
-    @ApiModelProperty(notes = "thương hiệu sản phẩm", position = 9)
-    private TrademarkDto trademarkDto;
+    @ApiModelProperty(notes = "người bán sản phẩm", position = 9)
+    private String adminID;
 
-    @ApiModelProperty(notes = "người bán sản phẩm", position = 10)
-    private AdminDto adminDto;
-
-    @ApiModelProperty(notes = "thông tin sản phẩm", position = 11)
+    @ApiModelProperty(notes = "thông tin sản phẩm", position = 10)
     private String information;
 
 
-    public ProductDto() {
-    }
-
     public ProductDto(Product product) {
         BeanUtils.copyProperties(product, this);
-    }
-
-    public ProductDto(Integer id, String name, Integer price, String bigImageUrl,
-                      String smallImageUrl, Boolean isSale, Integer count, Date createdDate, String information,
-                      Integer productTypeId, String productTypeName,
-                      String adminId, String firstName, String lastName, String address, Date birthDay, String phone,
-                      Gender gender, String avatarUrl, String imageCoverUrl,
-                      String userId, String username, UserType userType, Boolean isBanned, Date lastActive,
-                      Integer trademarkId, String trademarkName, String imageUrl) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.bigImageUrl = bigImageUrl;
-        this.smallImageUrl = smallImageUrl;
-        this.count = count;
-        this.isSale = isSale;
-        this.information = information;
-        this.createdDate = createdDate;
-        this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
-        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, gender, avatarUrl, imageCoverUrl,
-                userId, username, userType, isBanned, lastActive);
-        this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getBigImageUrl() {
-        return bigImageUrl;
-    }
-
-    public void setBigImageUrl(String bigImageUrl) {
-        this.bigImageUrl = bigImageUrl;
-    }
-
-    public String getSmallImageUrl() {
-        return smallImageUrl;
-    }
-
-    public void setSmallImageUrl(String smallImageUrl) {
-        this.smallImageUrl = smallImageUrl;
-    }
-
-//    public String getInformation() {
-//        return information;
-//    }
-//
-//    public void setInformation(String information) {
-//        this.information = information;
-//    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public ProductTypeDto getProductTypeDto() {
-        return productTypeDto;
-    }
-
-    public void setProductTypeDto(ProductTypeDto productTypeDto) {
-        this.productTypeDto = productTypeDto;
-    }
-
-    public TrademarkDto getTrademarkDto() {
-        return trademarkDto;
-    }
-
-    public void setTrademarkDto(TrademarkDto trademarkDto) {
-        this.trademarkDto = trademarkDto;
-    }
-
-    public AdminDto getAdminDto() {
-        return adminDto;
-    }
-
-    public void setAdminDto(AdminDto adminDto) {
-        this.adminDto = adminDto;
-    }
-
-    public String getInformation() {
-        return information;
-    }
-
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public Boolean getSale() {
-        return isSale;
-    }
-
-    public void setSale(Boolean sale) {
-        isSale = sale;
     }
 }

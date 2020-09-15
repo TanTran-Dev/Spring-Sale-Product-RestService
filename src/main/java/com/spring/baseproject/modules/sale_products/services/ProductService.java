@@ -88,19 +88,9 @@ public class ProductService {
 
 
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<Product> products = productRepository.getPageProduct(productTypeId, trademarkId, pageable);
-        List<ProductPreviewDto> previewDtoList = new ArrayList<>();
+        Page<ProductDto> productDtos = productRepository.getPageProduct(productTypeId, trademarkId, pageable);
 
-        for (Product product : products) {
-            product.setProductType(productType);
-
-            ProductPreviewDto productPreviewDto = new ProductPreviewDto(product);
-            productPreviewDto.setProductTypeDto(productTypeDto);
-            productPreviewDto.setTrademarkDto(trademarkDto);
-            previewDtoList.add(productPreviewDto);
-        }
-
-        return new BaseResponse(ResponseValue.SUCCESS, new PageDto<>(previewDtoList, products.getNumber(), products.getSize(), products.getTotalElements()));
+        return new BaseResponse(ResponseValue.SUCCESS, productDtos);
     }
 
     public BaseResponse getPageProductDtoByAdmin(String adminId,
