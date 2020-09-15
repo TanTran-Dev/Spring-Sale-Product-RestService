@@ -12,10 +12,8 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
     Customer findFirstById(String id);
 
     @Query("select new com.spring.baseproject.modules.customer.models.dtos.CustomerDto" +
-            "(c.id, c.firstName, c.lastName, c.address,c.birthDay, c.phone, c.gender, c.avatarUrl, c.imageCoverUrl, " +
-            "u.id, u.username, u.userType, u.isBanned, u.lastActive) " +
+            "(c.id, c.firstName, c.lastName, c.address,c.birthDay, c.phone, c.gender, c.avatarUrl, c.imageCoverUrl)" +
             "from Customer c " +
-            "left join c.user u " +
             "where c.id = ?1")
     CustomerDto getCustomerDto(String customerId);
 }

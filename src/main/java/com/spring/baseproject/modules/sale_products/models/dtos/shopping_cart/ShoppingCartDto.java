@@ -39,7 +39,7 @@ public class ShoppingCartDto {
                            String userId, String username, UserType userType, Boolean isBanner, Date lastActive) {
         this.id = id;
         this.customerDto = new CustomerDto(customerId, firstName, lastName,
-                address, birthday, phone, gender, avatarUrl, imageCoverUrl, userId, username, userType, isBanner, lastActive);
+                address, birthday, phone, gender, avatarUrl, imageCoverUrl);
     }
 
     public String getId() {
