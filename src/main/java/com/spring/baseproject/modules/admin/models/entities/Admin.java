@@ -5,6 +5,10 @@ import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
@@ -13,6 +17,10 @@ import java.util.Date;
 
 @Entity
 @Table(name = "admin")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Admin {
     @Id
     @Column(name = "id")
@@ -34,6 +42,9 @@ public class Admin {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "contact_email")
+    private String contactEmail;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
@@ -52,8 +63,6 @@ public class Admin {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Admin() {
-    }
 
     public Admin(NewAdminDto newAdminDto, User user) {
         update(newAdminDto);
@@ -65,84 +74,4 @@ public class Admin {
         BeanUtils.copyProperties(newAdminDto, this);
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getImageCoverUrl() {
-        return imageCoverUrl;
-    }
-
-    public void setImageCoverUrl(String imageCoverUrl) {
-        this.imageCoverUrl = imageCoverUrl;
-    }
 }

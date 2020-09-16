@@ -28,6 +28,12 @@ public class CustomerService {
         if (customerDto == null) {
             return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
         }
+
+//        User user = userRepository.findFirstById(customerId);
+//
+//        if (customerDto.getContactEmail() == null){
+//            customerDto.setContactEmail(user.getUsername());
+//        }
         return new BaseResponse(ResponseValue.SUCCESS, customerDto);
     }
 

@@ -4,12 +4,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.customer.models.dtos.NewCustomerDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "customer")
 public class Customer {
     @Id
@@ -32,6 +40,9 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "contact_email")
+    private String contactEmail;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
     private Gender gender;
@@ -50,9 +61,6 @@ public class Customer {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Customer() {
-    }
-
     public Customer(NewCustomerDto newCustomerDto, User user) {
         update(newCustomerDto);
         this.user = user;
@@ -61,86 +69,5 @@ public class Customer {
 
     public void update(NewCustomerDto newCustomerDto){
         BeanUtils.copyProperties(newCustomerDto, this);
-
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getImageCoverUrl() {
-        return imageCoverUrl;
-    }
-
-    public void setImageCoverUrl(String imageCoverUrl) {
-        this.imageCoverUrl = imageCoverUrl;
     }
 }

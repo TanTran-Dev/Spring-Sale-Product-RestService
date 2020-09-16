@@ -41,6 +41,9 @@ public class CustomerDto {
     @ApiModelProperty(notes = "số điện thoại")
     private String phone;
 
+    @ApiModelProperty(notes = "Email liên hệ")
+    private String contactEmail;
+
     @ApiModelProperty(notes = "giới tính")
     private Gender gender;
 

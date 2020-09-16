@@ -31,6 +31,10 @@ public class CustomerRegistrationService {
         }
 
         Customer customer = new Customer(newCustomerDto, user);
+
+        if (customer.getContactEmail() == null){
+            customer.setContactEmail(user.getUsername());
+        }
         customer.getUser().setUserType(newCustomerDto.getUserType());
         customerRepository.save(customer);
         return new BaseResponse(ResponseValue.SUCCESS);

@@ -6,6 +6,7 @@ import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
 import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
 import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.admin.repositories.AdminRepository;
+import com.spring.baseproject.modules.auth.models.dtos.UserDto;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.auth.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -35,11 +35,10 @@ public class ShoppingCartDto {
 
     public ShoppingCartDto(String id,
                            String customerId, String firstName, String lastName, Date birthday,
-                           String address, String phone, Gender gender, String avatarUrl, String imageCoverUrl,
-                           String userId, String username, UserType userType, Boolean isBanner, Date lastActive) {
+                           String address, String phone, String contactEmail, Gender gender, String avatarUrl, String imageCoverUrl) {
         this.id = id;
         this.customerDto = new CustomerDto(customerId, firstName, lastName,
-                address, birthday, phone, gender, avatarUrl, imageCoverUrl);
+                address, birthday, phone, contactEmail, gender, avatarUrl, imageCoverUrl);
     }
 
     public String getId() {
