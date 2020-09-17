@@ -1,8 +1,7 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
-import com.spring.baseproject.modules.auth.models.entities.UserType;
+import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
@@ -48,15 +47,15 @@ public class ProductPreviewDto {
     private Date createdDate;
 
     @ApiModelProperty(notes = "người bán sản phẩm")
-    private AdminDto adminDto;
+    private SalesmanDto salesmanDto;
 
     public ProductPreviewDto() {
     }
 
-    public ProductPreviewDto(ProductTypeDto productTypeDto, TrademarkDto trademarkDto, AdminDto adminDto, Product product) {
+    public ProductPreviewDto(ProductTypeDto productTypeDto, TrademarkDto trademarkDto, SalesmanDto salesmanDto, Product product) {
         this.productTypeDto = productTypeDto;
         this.trademarkDto = trademarkDto;
-        this.adminDto = adminDto;
+        this.salesmanDto = salesmanDto;
         BeanUtils.copyProperties(product, this);
     }
 
@@ -75,7 +74,7 @@ public class ProductPreviewDto {
         this.isSale = isSale;
         this.createdDate = createdDate;
         this.productTypeDto = new ProductTypeDto(productTypeId, productTypeName);
-        this.adminDto = new AdminDto(adminId, firstName, lastName, address, birthDay, phone, contactEmail, gender, avatarUrl, imageCoverUrl);
+        this.salesmanDto = new SalesmanDto(adminId, firstName, lastName, address, birthDay, phone, contactEmail, gender, avatarUrl, imageCoverUrl);
         this.trademarkDto = new TrademarkDto(trademarkId, trademarkName, imageUrl);
     }
 
@@ -163,12 +162,12 @@ public class ProductPreviewDto {
         this.createdDate = createdDate;
     }
 
-    public AdminDto getAdminDto() {
-        return adminDto;
+    public SalesmanDto getSalesmanDto() {
+        return salesmanDto;
     }
 
-    public void setAdminDto(AdminDto adminDto) {
-        this.adminDto = adminDto;
+    public void setSalesmanDto(SalesmanDto salesmanDto) {
+        this.salesmanDto = salesmanDto;
     }
 
     public boolean isSale() {

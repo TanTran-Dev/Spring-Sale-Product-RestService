@@ -4,12 +4,10 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
-import com.spring.baseproject.modules.admin.repositories.AdminRepository;
-import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
+import com.spring.baseproject.modules.salesman.repositories.SalesmanRepository;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.customer.repositories.CustomerRepository;
-import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.NewShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart_product.ShoppingCartProductDto;
 import com.spring.baseproject.modules.sale_products.models.entities.*;
@@ -45,7 +43,7 @@ public class ShoppingCartProductService {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private AdminRepository adminRepository;
+    private SalesmanRepository salesmanRepository;
 
     public BaseResponse createShoppingCartProductDto(NewShoppingCartProductDto newShoppingCartProductDto) {
         Product product = productRepository.findFirstById(newShoppingCartProductDto.getProductId());
@@ -55,11 +53,11 @@ public class ShoppingCartProductService {
 
         ProductType productType = productTypesRepository.findFirstById(product.getProductType().getId());
         Trademark trademark = trademarkRepository.findFirstById(product.getTrademark().getId());
-        Admin admin = adminRepository.findFirstById(product.getAdmin().getId());
+        Salesman salesman = salesmanRepository.findFirstById(product.getSalesman().getId());
 
         product.setProductType(productType);
         product.setTrademark(trademark);
-        product.setAdmin(admin);
+        product.setSalesman(salesman);
 
         ShoppingCart shoppingCart = shoppingCartRepository.findFirstById(newShoppingCartProductDto.getShoppingCartId());
         if (shoppingCart == null) {

@@ -2,8 +2,6 @@ package com.spring.baseproject.modules.customer.services;
 
 import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.constants.ResponseValue;
-import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
 import com.spring.baseproject.modules.auth.models.entities.User;
 import com.spring.baseproject.modules.auth.services.UserRegistrationService;
 import com.spring.baseproject.modules.customer.models.dtos.NewCustomerDto;

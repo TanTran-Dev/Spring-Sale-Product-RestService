@@ -1,7 +1,6 @@
-package com.spring.baseproject.modules.admin.models.dtos;
+package com.spring.baseproject.modules.salesman.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spring.baseproject.modules.auth.models.dtos.NewUserDto;
 import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
@@ -11,14 +10,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class NewAdminDto extends NewUserDto {
+public class NewSalesmanDto extends NewUserDto {
     @ApiModelProperty(notes = "Họ", position = 2)
     private String firstName;
 

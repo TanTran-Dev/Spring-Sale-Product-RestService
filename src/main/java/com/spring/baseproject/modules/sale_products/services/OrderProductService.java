@@ -4,9 +4,9 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
-import com.spring.baseproject.modules.admin.repositories.AdminRepository;
+import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
+import com.spring.baseproject.modules.salesman.repositories.SalesmanRepository;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.customer.repositories.CustomerRepository;
@@ -42,7 +42,7 @@ public class OrderProductService {
     private ProductRepository productRepository;
 
     @Autowired
-    private AdminRepository adminRepository;
+    private SalesmanRepository salesmanRepository;
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
@@ -59,23 +59,23 @@ public class OrderProductService {
             return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
         }
         CustomerDto customerDto = new CustomerDto(customer);
-        Admin admin = adminRepository.findFirstById(newOrderProductDto.getAdminId());
-        if (admin == null) {
-            return new BaseResponse(ResponseValue.ADMIN_NOT_FOUND);
+        Salesman salesman = salesmanRepository.findFirstById(newOrderProductDto.getAdminId());
+        if (salesman == null) {
+            return new BaseResponse(ResponseValue.SALESMAN_NOT_FOUND);
         }
-        AdminDto adminDto = new AdminDto(admin);
+        SalesmanDto salesmanDto = new SalesmanDto(salesman);
 
         ShoppingCart shoppingCart = shoppingCartRepository.findFirstById(newOrderProductDto.getShoppingCartId());
         if (shoppingCart == null) {
             return new BaseResponse(ResponseValue.SHOPPING_CART_NOT_FOUND);
         }
         ShoppingCartDto shoppingCartDto = new ShoppingCartDto(shoppingCart);
-        OrderProduct orderProduct = new OrderProduct(product, customer, admin, shoppingCart, newOrderProductDto);
+        OrderProduct orderProduct = new OrderProduct(product, customer, salesman, shoppingCart, newOrderProductDto);
 
         orderProductRepository.save(orderProduct);
 
         OrderProductPreviewDto orderProductPreviewDto =
-                new OrderProductPreviewDto(productDto, customerDto, adminDto, shoppingCartDto, orderProduct);
+                new OrderProductPreviewDto(productDto, customerDto, salesmanDto, shoppingCartDto, orderProduct);
 
         return new BaseResponse(ResponseValue.SUCCESS, orderProductPreviewDto);
     }
@@ -93,14 +93,14 @@ public class OrderProductService {
             Customer customer = customerRepository.findFirstById(orderProduct.getCustomer().getId());
             CustomerDto customerDto = new CustomerDto(customer);
 
-            Admin admin = adminRepository.findFirstById(orderProduct.getAdmin().getId());
-            AdminDto adminDto = new AdminDto(admin);
+            Salesman salesman = salesmanRepository.findFirstById(orderProduct.getSalesman().getId());
+            SalesmanDto salesmanDto = new SalesmanDto(salesman);
 
             ShoppingCart shoppingCart = shoppingCartRepository.findFirstByCustomerId(customer.getId());
             ShoppingCartDto shoppingCartDto = new ShoppingCartDto(shoppingCart);
 
             OrderProductPreviewDto orderProductPreviewDto = new OrderProductPreviewDto(
-                    productDto, customerDto, adminDto, shoppingCartDto, orderProduct);
+                    productDto, customerDto, salesmanDto, shoppingCartDto, orderProduct);
             listResult.add(orderProductPreviewDto);
         }
         PageDto<OrderProductPreviewDto> result = new PageDto<>(listResult, pageResult.getNumber(), pageResult.getSize(), pageResult.getTotalElements());
@@ -116,8 +116,8 @@ public class OrderProductService {
         Customer customer = customerRepository.findFirstById(orderProduct.getCustomer().getId());
         CustomerDto customerDto = new CustomerDto(customer);
 
-        Admin admin = adminRepository.findFirstById(orderProduct.getAdmin().getId());
-        AdminDto adminDto = new AdminDto(admin);
+        Salesman salesman = salesmanRepository.findFirstById(orderProduct.getSalesman().getId());
+        SalesmanDto salesmanDto = new SalesmanDto(salesman);
 
         ShoppingCart shoppingCart = shoppingCartRepository.findFirstByCustomerId(customer.getId());
         ShoppingCartDto shoppingCartDto = new ShoppingCartDto(shoppingCart);
@@ -125,7 +125,7 @@ public class OrderProductService {
             return new BaseResponse(ResponseValue.ORDER_PRODUCT_NOT_FOUND);
         }
 
-        OrderProductPreviewDto orderProductPreviewDto = new OrderProductPreviewDto(productDto, customerDto, adminDto, shoppingCartDto, orderProduct);
+        OrderProductPreviewDto orderProductPreviewDto = new OrderProductPreviewDto(productDto, customerDto, salesmanDto, shoppingCartDto, orderProduct);
         return new BaseResponse(ResponseValue.SUCCESS, orderProductPreviewDto);
     }
 

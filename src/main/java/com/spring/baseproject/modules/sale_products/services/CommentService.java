@@ -1,19 +1,13 @@
 package com.spring.baseproject.modules.sale_products.services;
 
 import com.spring.baseproject.base.models.BaseResponse;
-import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
-import com.spring.baseproject.modules.admin.repositories.AdminRepository;
-import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
+import com.spring.baseproject.modules.salesman.repositories.SalesmanRepository;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.customer.repositories.CustomerRepository;
 import com.spring.baseproject.modules.sale_products.models.dtos.comment.CommentDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.comment.NewCommentDto;
-import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
-import com.spring.baseproject.modules.sale_products.models.dtos.product_type.ProductTypeDto;
-import com.spring.baseproject.modules.sale_products.models.dtos.trademark.TrademarkDto;
 import com.spring.baseproject.modules.sale_products.models.entities.Comment;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import com.spring.baseproject.modules.sale_products.repositories.CommentRepository;
@@ -27,7 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -48,7 +41,7 @@ public class CommentService {
     private TrademarkRepository trademarkRepository;
 
     @Autowired
-    private AdminRepository adminRepository;
+    private SalesmanRepository salesmanRepository;
 
     public BaseResponse createNewComment(NewCommentDto newCommentDto) {
         Customer customer = customerRepository.findFirstById(newCommentDto.getCustomerId());

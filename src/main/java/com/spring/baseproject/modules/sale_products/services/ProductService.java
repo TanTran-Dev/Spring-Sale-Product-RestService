@@ -4,9 +4,9 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
-import com.spring.baseproject.modules.admin.repositories.AdminRepository;
+import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
+import com.spring.baseproject.modules.salesman.repositories.SalesmanRepository;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductPreviewDto;
@@ -41,7 +41,7 @@ public class ProductService {
     private TrademarkRepository trademarkRepository;
 
     @Autowired
-    private AdminRepository adminRepository;
+    private SalesmanRepository salesmanRepository;
 
     public BaseResponse createNewProductDto(NewProductDto newProductDto) {
         ProductType productType = productTypesRepository.findFirstById(newProductDto.getProductTypeId());
@@ -53,11 +53,11 @@ public class ProductService {
         if (trademark == null) {
             return new BaseResponse(ResponseValue.TRADEMARK_NOT_FOUND);
         }
-        Admin admin = adminRepository.findFirstById(newProductDto.getAdminId());
-        if (admin == null) {
-            return new BaseResponse(ResponseValue.ADMIN_NOT_FOUND);
+        Salesman salesman = salesmanRepository.findFirstById(newProductDto.getAdminId());
+        if (salesman == null) {
+            return new BaseResponse(ResponseValue.SALESMAN_NOT_FOUND);
         }
-        Product product = new Product(admin, productType, trademark, newProductDto);
+        Product product = new Product(salesman, productType, trademark, newProductDto);
 
         productRepository.save(product);
         return new BaseResponse(ResponseValue.SUCCESS);
@@ -96,20 +96,20 @@ public class ProductService {
     public BaseResponse getPageProductDtoByAdmin(String adminId,
                                                  List<String> sortBy, List<String> sortType,
                                                  int pageIndex, int pageSize){
-        Admin admin = adminRepository.findFirstById(adminId);
-        if (admin == null){
-            return new BaseResponse(ResponseValue.ADMIN_NOT_FOUND);
+        Salesman salesman = salesmanRepository.findFirstById(adminId);
+        if (salesman == null){
+            return new BaseResponse(ResponseValue.SALESMAN_NOT_FOUND);
         }
-        AdminDto adminDto = new AdminDto(admin);
+        SalesmanDto salesmanDto = new SalesmanDto(salesman);
 
         Pageable pageable = SortAndPageFactory.createPageable(sortBy, sortType, pageIndex, pageSize, NumberConstants.MAX_PAGE_SIZE);
-        Page<Product> products = productRepository.getPageProductByAdmin(adminId, pageable);
+        Page<Product> products = productRepository.getPageProductBySalesman(adminId, pageable);
         List<ProductPreviewDto> previewDtoList = new ArrayList<>();
 
         for (Product product : products) {
 
             ProductPreviewDto productPreviewDto = new ProductPreviewDto(product);
-            productPreviewDto.setAdminDto(adminDto);
+            productPreviewDto.setSalesmanDto(salesmanDto);
             previewDtoList.add(productPreviewDto);
         }
         return new BaseResponse(ResponseValue.SUCCESS,
@@ -133,16 +133,16 @@ public class ProductService {
         if (trademark == null) {
             return new BaseResponse(ResponseValue.TRADEMARK_NOT_FOUND);
         }
-        Admin admin = adminRepository.findFirstById(newProductDto.getAdminId());
-        if (admin == null) {
-            return new BaseResponse(ResponseValue.ADMIN_NOT_FOUND);
+        Salesman salesman = salesmanRepository.findFirstById(newProductDto.getAdminId());
+        if (salesman == null) {
+            return new BaseResponse(ResponseValue.SALESMAN_NOT_FOUND);
         }
 
         Product product = productRepository.findFirstById(productId);
         if (product == null) {
             return new BaseResponse(ResponseValue.PRODUCT_NOT_FOUND);
         }
-        product.update(admin, productType, trademark, newProductDto);
+        product.update(salesman, productType, trademark, newProductDto);
         productRepository.save(product);
         return new BaseResponse(ResponseValue.SUCCESS);
     }

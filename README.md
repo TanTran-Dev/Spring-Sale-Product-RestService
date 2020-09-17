@@ -965,7 +965,7 @@ Mobile. Firebase giúp lập trình viên rút ngắn thời gian phát triển,
 ###### 1. Thành phần   
 ````
  - Started Project
- - Firebase admin
+ - Firebase salesman
 ```` 
 
 ###### 2. Cấu trúc thư mục  
@@ -1006,7 +1006,7 @@ Mobile. Firebase giúp lập trình viên rút ngắn thời gian phát triển,
      ...
      // [firebase] Firebase
      implementation ('com.google.api-client:google-api-client:1.23.0')
-     implementation ('com.google.firebase:firebase-admin:5.11.0')
+     implementation ('com.google.firebase:firebase-salesman:5.11.0')
      implementation('com.google.guava:guava:20.0')
      ...
  }
@@ -1016,7 +1016,7 @@ Mobile. Firebase giúp lập trình viên rút ngắn thời gian phát triển,
 Cấu hình firebase được đặt trong `application.properties`  
 ````
 ...
-# [firebase] Firebase admin configuration
+# [firebase] Firebase salesman configuration
 application.firebase.google-services.path=base/google-services.json   # đường đẫn đến file config google-services.json
 application.firebase.fcm.legacy-server-key=AIzaSyDiJ9DLhe-BA_2W0mQElnqELlYl89wVbz0   # legancy server key của firebase project
 application.firebase.fcm.api=https://fcm.googleapis.com/fcm/send   # api send push notification của firebase

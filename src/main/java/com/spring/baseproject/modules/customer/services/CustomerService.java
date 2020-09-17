@@ -43,12 +43,18 @@ public class CustomerService {
             return new BaseResponse(ResponseValue.CUSTOMER_NOT_FOUND);
         }
 
-        User user = userRepository.findFirstById(customerId);
-        user.setUsername(newCustomerProfileDto.getUsername());
-        user.setPassword(passwordEncoder.encode(newCustomerProfileDto.getPassword()));
-        user.setUserType(newCustomerProfileDto.getUserType());
-
-        customer.setUser(user);
+//        User user = userRepository.findFirstById(customerId);
+////
+////        if (newCustomerProfileDto.getUsername() != null){
+////            user.setUsername(newCustomerProfileDto.getUsername());
+////        }
+////
+////        if (newCustomerProfileDto.getPassword() != null){
+////            user.setPassword(passwordEncoder.encode(newCustomerProfileDto.getPassword()));
+////        }
+//        user.setUserType(newCustomerProfileDto.getUserType());
+//
+//        customer.setUser(user);
         customer.update(newCustomerProfileDto);
         customerRepository.save(customer);
 

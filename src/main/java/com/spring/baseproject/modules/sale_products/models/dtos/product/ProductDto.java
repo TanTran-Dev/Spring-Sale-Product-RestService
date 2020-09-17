@@ -47,7 +47,7 @@ public class ProductDto {
     private Integer trademarkID;
 
     @ApiModelProperty(notes = "người bán sản phẩm", position = 9)
-    private String adminID;
+    private String salesmanID;
 
     @ApiModelProperty(notes = "thông tin sản phẩm", position = 10)
     private String information;

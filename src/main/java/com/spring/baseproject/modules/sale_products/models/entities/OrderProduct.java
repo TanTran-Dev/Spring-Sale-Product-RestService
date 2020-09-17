@@ -1,6 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.entities;
 
-import com.spring.baseproject.modules.admin.models.entities.Admin;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.sale_products.models.dtos.order_product.NewOrderProductDto;
 import org.hibernate.annotations.GenericGenerator;
@@ -49,7 +49,7 @@ public class OrderProduct {
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "admin_id")
-    private Admin admin;
+    private Salesman salesman;
 
     @OneToOne(
             fetch = FetchType.LAZY
@@ -65,10 +65,10 @@ public class OrderProduct {
     public OrderProduct() {
     }
 
-    public OrderProduct(Product product, Customer customer, Admin admin, ShoppingCart shoppingCart, NewOrderProductDto newOrderProductDto) {
+    public OrderProduct(Product product, Customer customer, Salesman salesman, ShoppingCart shoppingCart, NewOrderProductDto newOrderProductDto) {
         this.product = product;
         this.customer = customer;
-        this.admin = admin;
+        this.salesman = salesman;
         this.shoppingCart = shoppingCart;
         update(newOrderProductDto);
     }
@@ -125,12 +125,12 @@ public class OrderProduct {
         this.customer = customer;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Salesman getSalesman() {
+        return salesman;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
     }
 
     public ShoppingCart getShoppingCart() {

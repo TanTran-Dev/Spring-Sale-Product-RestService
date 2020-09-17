@@ -1,6 +1,6 @@
 package com.spring.baseproject.modules.sale_products.models.entities;
 
-import com.spring.baseproject.modules.admin.models.entities.Admin;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProductDto;
 import org.springframework.beans.BeanUtils;
 
@@ -49,8 +49,8 @@ public class Product {
     @ManyToOne(
             fetch = FetchType.LAZY// always using LAZY fetching strategy
     )
-    @JoinColumn(name = "admin_id")
-    private Admin admin;
+    @JoinColumn(name = "salesman_id")
+    private Salesman salesman;
 
     @ManyToOne(
             fetch = FetchType.LAZY
@@ -67,12 +67,12 @@ public class Product {
 
     }
 
-    public Product(Admin admin, ProductType productType, Trademark trademark, NewProductDto newProductDto) {
-        update(admin, productType, trademark, newProductDto);
+    public Product(Salesman salesman, ProductType productType, Trademark trademark, NewProductDto newProductDto) {
+        update(salesman, productType, trademark, newProductDto);
     }
 
-    public void update(Admin admin, ProductType productType, Trademark trademark, NewProductDto newProductDto) {
-        this.admin = admin;
+    public void update(Salesman salesman, ProductType productType, Trademark trademark, NewProductDto newProductDto) {
+        this.salesman = salesman;
         this.productType = productType;
         this.trademark = trademark;
         BeanUtils.copyProperties(newProductDto, this);
@@ -150,12 +150,12 @@ public class Product {
         this.productType = productType;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Salesman getSalesman() {
+        return salesman;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
     }
 
     public Trademark getTrademark() {

@@ -19,20 +19,20 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto(" +
             "p.id, p.name, p.price, p.count, p.createdDate, p.bigImageUrl, p.smallImageUrl, " +
-            "pt.id, tm.id, a.id, p.information) " +
+            "pt.id, tm.id, s.id, p.information) " +
             "from Product p " +
             "left join p.productType pt " +
-            "left join p.admin a " +
+            "left join p.salesman s " +
             "left join p.trademark tm " +
             "where p.id = ?1")
     ProductDto getProductDto(Integer id);
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto(" +
             "p.id, p.name, p.price, p.count, p.createdDate, p.bigImageUrl, p.smallImageUrl, " +
-            "pt.id, tm.id, a.id, p.information) " +
+            "pt.id, tm.id, s.id, p.information) " +
             "from Product p " +
             "left join p.productType pt " +
-            "left join p.admin a " +
+            "left join p.salesman s " +
             "left join p.trademark tm " +
             "where (?1 = 0 or pt.id = ?1) and (?2 = 0 or tm.id = ?2)")
     Page<ProductDto> getPageProduct(Integer productTypeId, Integer trademarkId, Pageable pageable);
@@ -40,15 +40,15 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query("select p " +
             "from Product p " +
             "left join p.productType pt " +
-            "left join p.admin a " +
+            "left join p.salesman s " +
             "left join p.trademark tm " +
-            "where a.id = ?1")
-    Page<Product> getPageProductByAdmin(String adminId, Pageable pageable);
+            "where s.id = ?1")
+    Page<Product> getPageProductBySalesman(String salesmanId, Pageable pageable);
 
     @Query("select p " +
             "from Product p " +
             "left join p.productType " +
-            "left join p.admin " +
+            "left join p.salesman " +
             "left join p.trademark " +
             "where p.id = ?1")
     Product getProduct(Integer id);

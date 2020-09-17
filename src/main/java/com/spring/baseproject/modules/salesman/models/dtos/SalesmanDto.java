@@ -1,10 +1,7 @@
-package com.spring.baseproject.modules.admin.models.dtos;
+package com.spring.baseproject.modules.salesman.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
-import com.spring.baseproject.modules.auth.models.dtos.BaseUserProfileDto;
-import com.spring.baseproject.modules.auth.models.dtos.UserDto;
-import com.spring.baseproject.modules.auth.models.entities.UserType;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -19,7 +16,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdminDto{
+public class SalesmanDto {
     @ApiModelProperty(notes = "id")
     private String id;
 
@@ -51,8 +48,8 @@ public class AdminDto{
     @ApiModelProperty(notes = "Ảnh bìa")
     private String imageCoverUrl;
 
-    public AdminDto(Admin admin) {
-        BeanUtils.copyProperties(admin, this);
+    public SalesmanDto(Salesman salesman) {
+        BeanUtils.copyProperties(salesman, this);
     }
 }
 

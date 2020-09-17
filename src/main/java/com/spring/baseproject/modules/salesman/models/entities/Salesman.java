@@ -1,9 +1,8 @@
-package com.spring.baseproject.modules.admin.models.entities;
+package com.spring.baseproject.modules.salesman.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.spring.baseproject.modules.admin.models.dtos.NewAdminDto;
+import com.spring.baseproject.modules.salesman.models.dtos.NewSalesmanDto;
 import com.spring.baseproject.modules.auth.models.entities.User;
-import com.spring.baseproject.modules.auth.models.entities.UserType;
 import com.spring.baseproject.modules.demo_building.models.entities.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,16 +11,15 @@ import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "admin")
+@Table(name = "salesman")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Admin {
+public class Salesman {
     @Id
     @Column(name = "id")
     private String id;
@@ -64,14 +62,14 @@ public class Admin {
     private User user;
 
 
-    public Admin(NewAdminDto newAdminDto, User user) {
-        update(newAdminDto);
+    public Salesman(NewSalesmanDto newSalesmanDto, User user) {
+        update(newSalesmanDto);
         this.id = user.getId();
         this.user = user;
     }
 
-    public void update(NewAdminDto newAdminDto) {
-        BeanUtils.copyProperties(newAdminDto, this);
+    public void update(NewSalesmanDto newSalesmanDto) {
+        BeanUtils.copyProperties(newSalesmanDto, this);
     }
 
 }

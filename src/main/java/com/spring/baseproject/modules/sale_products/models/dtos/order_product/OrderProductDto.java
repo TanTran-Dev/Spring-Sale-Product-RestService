@@ -1,7 +1,7 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.order_product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.spring.baseproject.modules.admin.models.entities.Admin;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.customer.models.entities.Customer;
 import com.spring.baseproject.modules.sale_products.models.entities.OrderProduct;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
@@ -41,7 +41,7 @@ public class OrderProductDto {
     private Customer customer;
 
     @ApiModelProperty(notes = "thông tin người bán", position = 9)
-    private Admin admin;
+    private Salesman salesman;
 
     @ApiModelProperty(notes = "thông tin giỏ hàng", position = 10)
     private ShoppingCart shoppingCart;
@@ -93,12 +93,12 @@ public class OrderProductDto {
         this.customer = customer;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Salesman getSalesman() {
+        return salesman;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
     }
 
     public ShoppingCart getShoppingCart() {

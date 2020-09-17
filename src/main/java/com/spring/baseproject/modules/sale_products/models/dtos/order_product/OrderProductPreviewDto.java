@@ -1,12 +1,11 @@
 package com.spring.baseproject.modules.sale_products.models.dtos.order_product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.spring.baseproject.modules.admin.models.dtos.AdminDto;
+import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
 import com.spring.baseproject.modules.customer.models.dtos.CustomerDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto;
 import com.spring.baseproject.modules.sale_products.models.dtos.shopping_cart.ShoppingCartDto;
 import com.spring.baseproject.modules.sale_products.models.entities.OrderProduct;
-import com.spring.baseproject.modules.sale_products.models.entities.Product;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.BeanUtils;
@@ -39,7 +38,7 @@ public class OrderProductPreviewDto {
     private CustomerDto customer;
 
     @ApiModelProperty(notes = "thông tin người bán", position = 8)
-    private AdminDto admin;
+    private SalesmanDto admin;
 
     @ApiModelProperty(notes = "thông tin giỏ hàng", position = 9)
     private ShoppingCartDto shoppingCart;
@@ -47,10 +46,10 @@ public class OrderProductPreviewDto {
     public OrderProductPreviewDto() {
     }
 
-    public OrderProductPreviewDto(ProductDto productDto, CustomerDto customerDto, AdminDto adminDto, ShoppingCartDto shoppingCartDto, OrderProduct orderProduct) {
+    public OrderProductPreviewDto(ProductDto productDto, CustomerDto customerDto, SalesmanDto salesmanDto, ShoppingCartDto shoppingCartDto, OrderProduct orderProduct) {
         this.product = productDto;
         this.customer = customerDto;
-        this.admin = adminDto;
+        this.admin = salesmanDto;
         this.shoppingCart = shoppingCartDto;
         BeanUtils.copyProperties(orderProduct, this);
     }
@@ -95,11 +94,11 @@ public class OrderProductPreviewDto {
         this.customer = customer;
     }
 
-    public AdminDto getAdmin() {
+    public SalesmanDto getAdmin() {
         return admin;
     }
 
-    public void setAdmin(AdminDto admin) {
+    public void setAdmin(SalesmanDto admin) {
         this.admin = admin;
     }
 
