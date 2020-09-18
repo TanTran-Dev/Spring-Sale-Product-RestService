@@ -69,5 +69,6 @@ public class Customer {
 
     public void update(NewCustomerDto newCustomerDto){
         BeanUtils.copyProperties(newCustomerDto, this);
+        this.birthDay = newCustomerDto.getBirthDay();
     }
 }

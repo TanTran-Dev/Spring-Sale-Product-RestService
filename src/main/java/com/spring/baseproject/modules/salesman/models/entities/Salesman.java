@@ -70,6 +70,7 @@ public class Salesman {
 
     public void update(NewSalesmanDto newSalesmanDto) {
         BeanUtils.copyProperties(newSalesmanDto, this);
+        this.birthDay = newSalesmanDto.getBirthDay();
     }
 
 }

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -29,7 +30,7 @@ public class NewCustomerDto extends NewUserDto {
 
     @ApiModelProperty(notes = "Ngày sinh", position = 5)
     @JsonFormat(pattern="dd-MM-yyyy")
-    private LocalDate birthDay;
+    private Date birthDay;
 
     @ApiModelProperty(notes = "Số điện thoại", position = 6)
     private String phone;
