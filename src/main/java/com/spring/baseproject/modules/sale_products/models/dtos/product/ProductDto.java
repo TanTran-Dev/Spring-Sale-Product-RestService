@@ -2,6 +2,8 @@ package com.spring.baseproject.modules.sale_products.models.dtos.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.baseproject.modules.sale_products.models.entities.Product;
+import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
+import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -47,7 +49,7 @@ public class ProductDto {
     private Integer trademarkID;
 
     @ApiModelProperty(notes = "người bán sản phẩm", position = 9)
-    private String salesmanID;
+    private SalesmanDto salesmanDto;
 
     @ApiModelProperty(notes = "thông tin sản phẩm", position = 10)
     private String information;
@@ -55,5 +57,23 @@ public class ProductDto {
 
     public ProductDto(Product product) {
         BeanUtils.copyProperties(product, this);
+    }
+
+    public ProductDto(
+            int id, String name, int price, int count, Date createdDate, String bigImageUrl, String smallImageUrl,
+            Integer productTypeID, Integer trademarkID,
+            String salesmanID, String firstName, String lastName, String phone, String contactEmail, String avatarUrl, String imageCoverUrl,
+            String information) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.count = count;
+        this.createdDate = createdDate;
+        this.bigImageUrl = bigImageUrl;
+        this.smallImageUrl = smallImageUrl;
+        this.productTypeID = productTypeID;
+        this.trademarkID = trademarkID;
+        this.salesmanDto = new SalesmanDto(salesmanID, firstName, lastName, phone, contactEmail, avatarUrl, imageCoverUrl);
+        this.information = information;
     }
 }

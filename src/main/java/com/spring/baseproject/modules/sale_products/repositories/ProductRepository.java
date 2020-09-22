@@ -19,7 +19,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto(" +
             "p.id, p.name, p.price, p.count, p.createdDate, p.bigImageUrl, p.smallImageUrl, " +
-            "pt.id, tm.id, s.id, p.information) " +
+            "pt.id, tm.id, " +
+            "s.id, s.firstName, s.lastName, s.phone, s.contactEmail, s.avatarUrl, s.imageCoverUrl, " +
+            "p.information) " +
             "from Product p " +
             "left join p.productType pt " +
             "left join p.salesman s " +
@@ -29,7 +31,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("select new com.spring.baseproject.modules.sale_products.models.dtos.product.ProductDto(" +
             "p.id, p.name, p.price, p.count, p.createdDate, p.bigImageUrl, p.smallImageUrl, " +
-            "pt.id, tm.id, s.id, p.information) " +
+            "pt.id, tm.id, " +
+            "s.id, s.firstName, s.lastName, s.phone, s.contactEmail, s.avatarUrl, s.imageCoverUrl, " +
+            "p.information) " +
             "from Product p " +
             "left join p.productType pt " +
             "left join p.salesman s " +

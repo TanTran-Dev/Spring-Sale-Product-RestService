@@ -2,12 +2,20 @@ package com.spring.baseproject.modules.sale_products.models.entities;
 
 import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.sale_products.models.dtos.product.NewProductDto;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "product")
 public class Product {
 
@@ -63,10 +71,6 @@ public class Product {
         this.createdDate = new Date();
     }
 
-    public Product() {
-
-    }
-
     public Product(Salesman salesman, ProductType productType, Trademark trademark, NewProductDto newProductDto) {
         update(salesman, productType, trademark, newProductDto);
     }
@@ -76,101 +80,5 @@ public class Product {
         this.productType = productType;
         this.trademark = trademark;
         BeanUtils.copyProperties(newProductDto, this);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getBigImageUrl() {
-        return bigImageUrl;
-    }
-
-    public void setBigImageUrl(String bigImageUrl) {
-        this.bigImageUrl = bigImageUrl;
-    }
-
-    public String getSmallImageUrl() {
-        return smallImageUrl;
-    }
-
-    public void setSmallImageUrl(String smallImageUrl) {
-        this.smallImageUrl = smallImageUrl;
-    }
-
-    public String getInformation() {
-        return information;
-    }
-
-    public void setInformation(String information) {
-        this.information = information;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public ProductType getProductType() {
-        return productType;
-    }
-
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
-    }
-
-    public Salesman getSalesman() {
-        return salesman;
-    }
-
-    public void setSalesman(Salesman salesman) {
-        this.salesman = salesman;
-    }
-
-    public Trademark getTrademark() {
-        return trademark;
-    }
-
-    public void setTrademark(Trademark trademark) {
-        this.trademark = trademark;
-    }
-
-    public boolean isSale() {
-        return isSale;
-    }
-
-    public void setSale(boolean sale) {
-        isSale = sale;
     }
 }

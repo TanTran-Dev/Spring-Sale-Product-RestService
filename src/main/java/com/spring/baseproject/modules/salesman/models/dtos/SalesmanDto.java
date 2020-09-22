@@ -51,5 +51,16 @@ public class SalesmanDto {
     public SalesmanDto(Salesman salesman) {
         BeanUtils.copyProperties(salesman, this);
     }
+
+    public SalesmanDto(String id, String firstName, String lastName, String phone, String contactEmail,
+                       String avatarUrl, String imageCoverUrl) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.contactEmail = contactEmail;
+        this.avatarUrl = avatarUrl;
+        this.imageCoverUrl = imageCoverUrl;
+    }
 }
 

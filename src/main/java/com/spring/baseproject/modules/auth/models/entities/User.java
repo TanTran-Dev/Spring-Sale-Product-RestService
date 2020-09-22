@@ -1,11 +1,19 @@
 package com.spring.baseproject.modules.auth.models.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "user")
 public class User {
     @Id
@@ -25,59 +33,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserType userType;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
+    public User(String id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean getIsBanned() {
-        return isBanned;
-    }
-
-    public void setIsBanned(boolean isBanned) {
-        this.isBanned = isBanned;
-    }
-
-    public Date getLastActive() {
-        return lastActive;
-    }
-
-    public void setLastActive(Date lastActive) {
-        this.lastActive = lastActive;
-    }
-
-    public boolean isBanned() {
-        return isBanned;
-    }
-
-    public void setBanned(boolean banned) {
-        isBanned = banned;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 }
