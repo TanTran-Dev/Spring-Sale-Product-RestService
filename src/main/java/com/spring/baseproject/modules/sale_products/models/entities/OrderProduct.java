@@ -48,7 +48,7 @@ public class OrderProduct {
     @OneToOne(
             fetch = FetchType.LAZY
     )
-    @JoinColumn(name = "admin_id")
+    @JoinColumn(name = "salesman")
     private Salesman salesman;
 
     @OneToOne(
