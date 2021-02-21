@@ -14,12 +14,16 @@ public class ProductTypeDto {
     @ApiModelProperty(notes = ("tên loại sản phẩm"))
     private String name;
 
+    @ApiModelProperty(notes = ("Image Url"))
+    private String imageUrl;
+
     public ProductTypeDto() {
     }
 
-    public ProductTypeDto(Integer id, String name) {
+    public ProductTypeDto(Integer id, String name, String imageUrl) {
         this.id = id;
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 
     public ProductTypeDto(ProductType productType) {
@@ -45,5 +49,13 @@ public class ProductTypeDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

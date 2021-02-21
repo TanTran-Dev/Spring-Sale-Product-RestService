@@ -17,6 +17,9 @@ public class ProductType {
     @Column(name = "name", nullable = false)
     private String productTypeName;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     public ProductType() {
     }
 
@@ -42,5 +45,13 @@ public class ProductType {
 
     public void setProductTypeName(String productTypeName) {
         this.productTypeName = productTypeName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

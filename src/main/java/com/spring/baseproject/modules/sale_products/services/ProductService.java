@@ -4,6 +4,7 @@ import com.spring.baseproject.base.models.BaseResponse;
 import com.spring.baseproject.base.models.PageDto;
 import com.spring.baseproject.constants.NumberConstants;
 import com.spring.baseproject.constants.ResponseValue;
+import com.spring.baseproject.modules.sale_products.services.file.FirebaseImageService;
 import com.spring.baseproject.modules.salesman.models.dtos.SalesmanDto;
 import com.spring.baseproject.modules.salesman.models.entities.Salesman;
 import com.spring.baseproject.modules.salesman.repositories.SalesmanRepository;
@@ -43,6 +44,9 @@ public class ProductService {
     @Autowired
     private SalesmanRepository salesmanRepository;
 
+    @Autowired
+    private FirebaseImageService firebaseImageService;
+
     public BaseResponse createNewProductDto(NewProductDto newProductDto) {
         ProductType productType = productTypesRepository.findFirstById(newProductDto.getProductTypeId());
         if (productType == null) {
@@ -66,8 +70,8 @@ public class ProductService {
     public BaseResponse getPageProductDto(Integer productTypeId, Integer trademarkId,
                                           List<String> sortBy, List<String> sortType,
                                           int pageIndex, int pageSize) {
-        ProductType productType = null;
-        ProductTypeDto productTypeDto = null;
+        ProductType productType;
+        ProductTypeDto productTypeDto;
         if (productTypeId != 0) {
             productType = productTypesRepository.findFirstById(productTypeId);
             if (productType == null) {

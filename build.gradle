@@ -61,8 +61,8 @@ dependencies {
     implementation('io.jsonwebtoken:jjwt:0.9.0')
 
     // [firebase] Firebase
-    implementation ('com.google.api-client:google-api-client:1.23.0')
-    implementation ('com.google.firebase:firebase-admin:5.11.0')
+    implementation('com.google.api-client:google-api-client:1.23.0')
+    implementation('com.google.firebase:firebase-admin:6.14.0')
     implementation('com.google.guava:guava:20.0')
 
     // Apache POI - .xlsx reader and generator
