@@ -51,14 +51,14 @@ public class ProductTypesService {
         return new BaseResponse(ResponseValue.SUCCESS, productTypeDto);
     }
 
-    public ProductTypeImageUrlDto updateProductTypeImageUrl(Integer productTypeID, MultipartFile imageFile) throws IOException {
-        checkProductTypeExists(productTypeID);
-        String oldImageUrl = productTypesRepository.getProductTypeImageUrl(productTypeID);
-        String newImageUrl = firebaseImageService.save(imageFile);
-        firebaseImageService.delete(oldImageUrl);
-
-        productTypesRepository.updateProductTypeImage(productTypeID, newImageUrl);
-    }
+//    public ProductTypeImageUrlDto updateProductTypeImageUrl(Integer productTypeID, MultipartFile imageFile) throws IOException {
+//        checkProductTypeExists(productTypeID);
+//        String oldImageUrl = productTypesRepository.getProductTypeImageUrl(productTypeID);
+//        String newImageUrl = firebaseImageService.save(imageFile);
+//        firebaseImageService.delete(oldImageUrl);
+//
+//        productTypesRepository.updateProductTypeImage(productTypeID, newImageUrl);
+//    }
 
 
     public BaseResponse checkProductTypeExists(Integer productTypeID){

@@ -52,7 +52,7 @@ public class FirebaseImageService implements IImageService {
             }
 
 
-        } catch (Exception ex) {
+        } catch (Exception ex){
 
             ex.printStackTrace();
 
